@@ -1,78 +1,60 @@
-// "use client";
-
-// import { useEffect } from "react";
-// import Lenis from "lenis";
-
-// export default function SmoothScroll({
-//    children,
-// }: {
-//    children: React.ReactNode;
-// }) {
-//    useEffect(() => {
-//       // Reset scroll on refresh
-//       window.scrollTo(0, 0);
-
-//       if ("scrollRestoration" in history) {
-//          history.scrollRestoration = "manual";
-//       }
-
-//       const lenis = new Lenis({
-//          smoothWheel: true,
-//          syncTouch: true,
-//          lerp: 0.08, // lower = smoother, higher = snappier
-//          wheelMultiplier: 1,
-//          touchMultiplier: 1.5,
-//       });
-
-//       function raf(time: number) {
-//          lenis.raf(time);
-//          requestAnimationFrame(raf);
-//       }
-
-//       const rafId = requestAnimationFrame(raf);
-
-//       return () => {
-//          cancelAnimationFrame(rafId);
-//          lenis.destroy();
-//       };
-//    }, []);
-
-//    return <>{children}</>;
-// }
-
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Lenis from "lenis";
+import "lenis/dist/lenis.css";
+import { LenisContext } from "@/lib/lenis-context";
 
 export default function SmoothScroll({
    children,
 }: {
    children: React.ReactNode;
 }) {
+   const [lenis, setLenis] = useState<Lenis | null>(null);
+
    useEffect(() => {
-      const lenis = new Lenis({
-         lerp: 0.18, // faster response, less lag
-         wheelMultiplier: 1,
-         touchMultiplier: 1,
+      const prefersReduced = window.matchMedia(
+         "(prefers-reduced-motion: reduce)",
+      ).matches;
+
+      if (prefersReduced) return;
+
+      const instance = new Lenis({
+         duration: 1.5,
+         easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
          smoothWheel: true,
-         syncTouch: true,
+         syncTouch: false,
+         wheelMultiplier: 0.95,
+         touchMultiplier: 1.2,
+         lerp: 0.1,
       });
+
+      setLenis(instance);
 
       let rafId: number;
 
       const raf = (time: number) => {
-         lenis.raf(time);
+         instance.raf(time);
          rafId = requestAnimationFrame(raf);
       };
 
       rafId = requestAnimationFrame(raf);
 
+      const handleResize = () => {
+         instance.resize();
+      };
+
+      window.addEventListener("resize", handleResize);
+
       return () => {
          cancelAnimationFrame(rafId);
-         lenis.destroy();
+         window.removeEventListener("resize", handleResize);
+         instance.destroy();
+         setLenis(null);
       };
    }, []);
 
-   return <>{children}</>;
+   return (
+      <LenisContext.Provider value={lenis}>{children}</LenisContext.Provider>
+   );
 }

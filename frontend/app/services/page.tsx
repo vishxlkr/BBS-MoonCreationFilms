@@ -1,81 +1,347 @@
 "use client";
 
-import React, { useState } from "react";
-import SectionReveal from "@/components/ui/SectionReveal";
-import ServiceModal from "@/components/ui/ServiceModal";
+import Image from "next/image";
 import Link from "next/link";
-import * as Icons from "lucide-react";
+import { useState } from "react";
+import ServiceModal from "@/components/ui/ServiceModal";
 import { servicesData } from "@/lib/services-data";
+import * as LucideIcons from "lucide-react";
+import SectionReveal from "@/components/ui/SectionReveal";
+
+const steps = [
+   [
+      "1",
+      "Discovery",
+      "We begin by understanding your goals, audience, and market landscape.",
+   ],
+   [
+      "2",
+      "Strategy",
+      "We build a customized plan that aligns with objectives and budget.",
+   ],
+   [
+      "3",
+      "Execution",
+      "Our team implements the strategy with precision and clear ownership.",
+   ],
+   [
+      "4",
+      "Optimization",
+      "We monitor performance and make data-driven improvements.",
+   ],
+];
 
 export default function ServicesPage() {
-  const [selectedService, setSelectedService] = useState<string | null>(null);
+   const [isModalOpen, setIsModalOpen] = useState(false);
+   const [selectedServiceId, setSelectedServiceId] = useState<string | null>(
+      null,
+   );
 
-  return (
-    <div className="pt-24 pb-20 min-h-screen bg-deep-navy">
-      <section className="relative w-full h-[50vh] flex items-center justify-center overflow-hidden mb-16">
-        <div className="absolute inset-0 bg-gradient-to-b from-deep-navy/80 to-deep-navy z-10" />
-        <div className="absolute inset-0 bg-midnight-blue/30" />
-        <div className="relative z-20 text-center px-4">
-          <SectionReveal>
-            <h1 className="font-heading text-4xl sm:text-5xl md:text-7xl text-cinematic-blue mb-4">Our Services</h1>
-            <p className="font-accent text-ice-blue tracking-widest uppercase text-sm">Crafted with cinematic precision</p>
-          </SectionReveal>
-        </div>
-      </section>
+   const handleServiceClick = (serviceId: string) => {
+      setSelectedServiceId(serviceId);
+      setIsModalOpen(true);
+   };
 
-      <section className="max-w-7xl mx-auto px-6 pb-24">
-        <SectionReveal className="mb-12">
-          <Link 
-            href="/services/web-design" 
-            className="group block w-full bg-charcoal-night border border-cinematic-blue/20 rounded-xl p-8 hover:border-cinematic-blue hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 relative overflow-hidden"
-          >
-            <div className="absolute inset-0 bg-gradient-to-r from-cinematic-blue/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            <div className="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
-              <div>
-                <div className="flex items-center gap-4 mb-3">
-                  <Icons.Monitor className="text-cinematic-blue group-hover:scale-110 transition-transform duration-300" size={40} />
-                  <h2 className="font-heading text-2xl sm:text-3xl text-ice-blue group-hover:text-cinematic-blue transition-colors">Web Design Service</h2>
-                </div>
-                <p className="font-body text-ice-blue/70 max-w-3xl">
-                  Establish a strong digital foundation with our modern website development services. We create responsive, performance-optimized, and aesthetically pleasing websites tailored precisely to your brand's identity.
-                </p>
-              </div>
-              <div className="flex-shrink-0">
-                <span className="font-accent uppercase text-xs sm:text-sm font-bold tracking-wider bg-cinematic-blue text-charcoal-night px-4 py-2 sm:px-6 sm:py-3 rounded-full flex items-center gap-2 group-hover:bg-ice-blue transition-colors">
-                  Explore Service <Icons.ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </span>
-              </div>
+   return (
+      <>
+         <section className="section-dark pt-[142px] pb-24">
+            <div className="container-brand">
+               <SectionReveal>
+                  <h1 className="headline-lg max-w-4xl">
+                     Our <br />
+                     <span className="text-gradient">Services</span>
+                  </h1>
+                  <p className="mt-5 max-w-xl text-lg font-semibold text-white/70">
+                     Expert marketing solutions in SEO, PPC advertising, and
+                     website development to grow your business.
+                  </p>
+               </SectionReveal>
             </div>
-          </Link>
-        </SectionReveal>
+         </section>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {servicesData.map((svc, idx) => {
-            const Icon = (Icons as any)[svc.icon] || Icons.Video;
-            return (
-              <SectionReveal key={svc.id}>
-                <div 
-                  onClick={() => setSelectedService(svc.id)}
-                  className="bg-charcoal-night border border-cinematic-blue/10 p-8 rounded-xl cursor-pointer group hover:border-l-4 hover:border-l-cinematic-blue hover:-translate-y-1 hover:shadow-2xl transition-all duration-300 h-full flex flex-col"
-                >
-                  <Icon className="text-cinematic-blue mb-6 group-hover:scale-110 transition-transform duration-300" size={40} />
-                  <h3 className="font-heading text-xl sm:text-2xl text-ice-blue mb-3 group-hover:text-cinematic-blue transition-colors">{svc.name}</h3>
-                  <p className="font-body text-ice-blue/70 flex-grow mb-6">{svc.shortDescription}</p>
-                  <span className="font-accent uppercase text-xs tracking-wider text-cinematic-blue flex items-center gap-2">
-                    Explore <span className="group-hover:translate-x-1 transition-transform">→</span>
-                  </span>
-                </div>
-              </SectionReveal>
-            );
-          })}
-        </div>
-      </section>
+         {/* web design */}
+         {/* Featured Web Design Service */}
+         {/* Featured Web Design Service */}
+         <section className="py-14">
+            <div className="container-brand">
+               <Link
+                  href="/services/web-design"
+                  className="
+            group
+            relative
+            block
+            overflow-hidden
+            rounded-[34px]
+            border
+            border-[#E8EDF5]
+            bg-white
+            p-6
+            lg:p-8
+            transition-all
+            duration-500
+            hover:-translate-y-2
+            hover:border-[#2f6bf2]/15
+            hover:shadow-[0_30px_70px_rgba(47,107,242,0.12)]
+         "
+               >
+                  {/* Background glow */}
+                  <div className="absolute right-0 top-0 h-44 w-44 rounded-full bg-blue-100 blur-[90px] opacity-0 transition duration-700 group-hover:opacity-100" />
 
-      <ServiceModal 
-        isOpen={!!selectedService} 
-        onClose={() => setSelectedService(null)} 
-        serviceId={selectedService} 
-      />
-    </div>
-  );
+                  {/* Animated top line */}
+                  <div className="absolute left-0 top-0 h-[3px] w-0 bg-gradient-to-r from-[#2f6bf2] via-cyan-400 to-[#2f6bf2] transition-all duration-700 group-hover:w-full" />
+
+                  <div className="relative z-10 grid gap-8 lg:grid-cols-[1.2fr_260px] lg:items-center">
+                     {/* Left Content */}
+                     <div>
+                        <div className="mb-4 inline-flex rounded-full border border-[#DFE8F5] bg-[#F4F8FF] px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] text-[#2f6bf2]">
+                           Featured Service
+                        </div>
+
+                        <h2 className="text-3xl md:text-4xl font-black leading-tight text-[#101a2f]">
+                           Premium{" "}
+                           <span className="text-gradient">
+                              Web Design Service
+                           </span>
+                        </h2>
+
+                        <p className="mt-4 max-w-2xl text-sm md:text-base leading-7 text-[#647086]">
+                           Build trust and increase conversions with modern,
+                           premium websites designed for speed, aesthetics, and
+                           business growth.
+                        </p>
+
+                        {/* Small features */}
+                        <div className="mt-6 flex flex-wrap gap-3">
+                           {[
+                              "Premium UI/UX",
+                              "SEO Optimized",
+                              "Fast Performance",
+                              "Responsive",
+                           ].map((item) => (
+                              <div
+                                 key={item}
+                                 className="
+                           rounded-full
+                           border
+                           border-[#E6EDF7]
+                           bg-[#FAFCFF]
+                           px-4
+                           py-2
+                           text-sm
+                           font-semibold
+                           text-[#101a2f]
+                           transition
+                           duration-300
+                           group-hover:border-[#2f6bf2]/15
+                        "
+                              >
+                                 {item}
+                              </div>
+                           ))}
+                        </div>
+
+                        {/* CTA */}
+                        <div className="btn-primary mt-8 inline-flex">
+                           Explore Service
+                           <span className="transition-transform duration-500 group-hover:translate-x-2">
+                              →
+                           </span>
+                        </div>
+                     </div>
+
+                     {/* Right Compact Visual */}
+
+                     <div className="relative mx-auto w-full max-w-[480px]">
+                        <div className="rounded-[28px] bg-gradient-to-br from-[#17204A] to-[#07111F] p-4 shadow-xl">
+                           <div className="rounded-[22px] bg-[#0B1426] p-4">
+                              {/* Browser top */}
+                              <div className="mb-4 flex gap-2">
+                                 <div className="h-2.5 w-2.5 rounded-full bg-red-400" />
+                                 <div className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
+                                 <div className="h-2.5 w-2.5 rounded-full bg-green-400" />
+                              </div>
+
+                              {/* Mock UI */}
+                              <div className="rounded-2xl bg-white p-3">
+                                 <div className="h-5 rounded-lg bg-[#EEF4FF]" />
+
+                                 <div className="mt-3 h-20 rounded-xl bg-gradient-to-br from-[#DDE9FF] to-[#EEF4FF]" />
+
+                                 <div className="mt-3 flex gap-2">
+                                    <div className="h-8 flex-1 rounded-lg bg-[#2f6bf2]" />
+                                    <div className="h-8 w-12 rounded-lg bg-[#EAF2FF]" />
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+
+                        {/* Floating badge */}
+                        <div className="absolute -bottom-3 -left-3 rounded-2xl border border-[#E6ECF5] bg-white px-4 py-3 shadow-lg">
+                           <p className="text-xs font-bold text-[#101a2f]">
+                              Modern • Fast
+                           </p>
+                        </div>
+                     </div>
+                  </div>
+               </Link>
+            </div>
+         </section>
+
+         {/* service cards */}
+         <section className="section-soft py-8">
+            <div className="container-brand">
+               {/* Header */}
+               <div className="mb-20 text-center">
+                  <h2 className="headline-md mx-auto mt-4 max-w-4xl">
+                     Our <span className="text-gradient">Services</span>
+                  </h2>
+
+                  <p className="mx-auto mt-5 max-w-2xl text-sm font-semibold text-[#647086]">
+                     Click on any service to discover how we help brands grow
+                     through premium digital experiences, marketing, and
+                     strategy.
+                  </p>
+               </div>
+
+               {/* Cards */}
+               <div className="grid gap-7 md:grid-cols-2 xl:grid-cols-3">
+                  {servicesData.map((service) => {
+                     const IconComponent = LucideIcons[
+                        service.icon as keyof typeof LucideIcons
+                     ] as any;
+
+                     return (
+                        <button
+                           key={service.id}
+                           onClick={() => handleServiceClick(service.id)}
+                           className="
+                     group
+                     relative
+                     overflow-hidden
+                     rounded-[32px]
+                     border
+                     border-[#E8EDF5]
+                     bg-white/80
+                     p-8
+                     text-left
+                     backdrop-blur-xl
+                     transition-all
+                     duration-500
+                     hover:-translate-y-3
+                     hover:border-[#2f6bf2]/15
+                     hover:bg-white
+                     hover:shadow-[0_30px_80px_rgba(47,107,242,0.14)]
+                  "
+                        >
+                           {/* Background glow */}
+                           <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-blue-100 blur-[90px] opacity-0 transition duration-700 group-hover:opacity-100" />
+
+                           {/* Top gradient line */}
+                           <div className="absolute left-0 top-0 h-[3px] w-0 bg-gradient-to-r from-[#2f6bf2] via-cyan-400 to-[#2f6bf2] transition-all duration-700 group-hover:w-full" />
+
+                           <div className="relative z-10 flex h-full flex-col">
+                              {/* Top section */}
+                              <div className="flex items-start justify-between">
+                                 {/* Icon */}
+                                 {IconComponent && (
+                                    <div
+                                       className="
+                                 flex
+                                 h-16
+                                 w-16
+                                 items-center
+                                 justify-center
+                                 rounded-2xl
+                                 bg-[#F4F8FF]
+                                 transition-all
+                                 duration-500
+                                 group-hover:scale-110
+                                 group-hover:rotate-3
+                                 group-hover:bg-[#2f6bf2]
+                              "
+                                    >
+                                       <IconComponent className="h-7 w-7 text-[#2f6bf2] transition-colors duration-500 group-hover:text-white" />
+                                    </div>
+                                 )}
+
+                                 {/* Number */}
+                                 <span className="text-sm font-black tracking-[0.18em] text-[#2f6bf2]/40">
+                                    0{servicesData.indexOf(service) + 1}
+                                 </span>
+                              </div>
+
+                              {/* Content */}
+                              <div className="mt-8 flex-grow">
+                                 <h3 className="text-2xl font-black leading-tight tracking-tight text-[#101a2f] transition-colors duration-300 group-hover:text-[#2f6bf2]">
+                                    {service.name}
+                                 </h3>
+
+                                 <p className="mt-4 line-clamp-3 text-sm font-medium leading-7 text-[#647086]">
+                                    {service.shortDescription}
+                                 </p>
+                              </div>
+
+                              {/* CTA */}
+                              <div className="mt-8 flex items-center gap-2 text-sm font-bold text-[#101a2f] transition-all duration-500 group-hover:gap-4 group-hover:text-[#2f6bf2]">
+                                 Explore Service
+                                 <span className="transition-transform duration-500 group-hover:translate-x-2">
+                                    →
+                                 </span>
+                              </div>
+                           </div>
+                        </button>
+                     );
+                  })}
+               </div>
+            </div>
+         </section>
+
+         <section className="px-4 py-24">
+            <div className="container-brand rounded-2xl bg-gradient-to-br from-[#17204a] to-[#07111f] px-6 py-16 text-center text-white shadow-2xl">
+               <h2 className="headline-md mx-auto max-w-4xl">
+                  See Where Your Marketing Is{" "}
+                  <span className="text-gradient">Falling Short.</span>
+               </h2>
+               <p className="mx-auto mt-5 max-w-xl text-sm font-semibold text-white/70">
+                  We'll review your campaigns, website, and conversion flow to
+                  identify the strongest opportunities.
+               </p>
+               <Link href="/contact" className="btn-primary mt-8">
+                  Get Your Free Marketing Audit
+               </Link>
+            </div>
+         </section>
+
+         {/* Service Modal */}
+         <ServiceModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            serviceId={selectedServiceId}
+         />
+      </>
+   );
+}
+
+function Step({
+   num,
+   title,
+   text,
+}: {
+   num: string;
+   title: string;
+   text: string;
+}) {
+   return (
+      <div>
+         <div className="mx-auto mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#1f1f23] text-lg font-black text-white">
+            {num}
+         </div>
+         <h3 className="text-lg font-black">
+            Step {num}: {title}
+         </h3>
+         <p className="mx-auto mt-2 max-w-xs text-sm font-medium text-[#647086]">
+            {text}
+         </p>
+      </div>
+   );
 }

@@ -42,13 +42,17 @@ export default function ContactSection() {
       try {
          const res = await fetch("/api/contact", {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+               "Content-Type": "application/json",
+            },
             body: JSON.stringify(data),
          });
 
          const result = await res.json();
 
-         if (!res.ok) throw new Error(result.error || "Failed to send message");
+         if (!res.ok) {
+            throw new Error(result.error || "Failed to send message");
+         }
 
          setIsSuccess(true);
       } catch (err: any) {
@@ -59,256 +63,210 @@ export default function ContactSection() {
    };
 
    return (
-      <div
+      <section
          id="contact"
-         className="bg-deep-navy py-24 px-6 md:px-12 border-t border-cinematic-blue/10"
+         className="scroll-mt-32 bg-gradient-to-b from-gray-50 to-white py-18 px-6"
       >
-         <div className="max-w-[1440px] mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-            {/* Left Col - Form */}
+         <div className="max-w-7xl mx-auto">
+            {/* Heading */}
             <SectionReveal>
-               <div className="bg-charcoal-night rounded-2xl border border-cinematic-blue/10 p-8 md:p-12 relative overflow-hidden">
-                  <h2 className="font-heading text-4xl text-cinematic-blue mb-4">
-                     Let's Create Together
+               <div className="text-center mb-16">
+                  <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-5">
+                     Let’s Create Something{" "}
+                     <span className="text-blue-600">Extraordinary</span>
                   </h2>
-                  <p className="font-body text-ice-blue/80 mb-10">
-                     Fill out the form below to inquire about our cinematography
-                     services.
+
+                  <p className="max-w-2xl mx-auto text-gray-600 text-lg">
+                     Whether it's weddings, cinematic films, commercial shoots
+                     or creative storytelling — our team would love to bring
+                     your vision to life.
                   </p>
+               </div>
+            </SectionReveal>
 
-                  <AnimatePresence mode="wait">
-                     {isSuccess ? (
-                        <motion.div
-                           key="success"
-                           initial={{ opacity: 0, scale: 0.95 }}
-                           animate={{ opacity: 1, scale: 1 }}
-                           className="flex flex-col items-center justify-center py-12 text-center"
-                        >
+            <div className="grid lg:grid-cols-[1.45fr_0.75fr] gap-8 items-start">
+               {/* Contact Form */}
+               <SectionReveal>
+                  <div className="bg-white rounded-[32px] border border-gray-200 shadow-xl p-8 md:p-10 hover:shadow-2xl transition-all duration-500">
+                     <AnimatePresence mode="wait">
+                        {isSuccess ? (
                            <motion.div
-                              initial={{ pathLength: 0 }}
-                              animate={{ pathLength: 1 }}
-                              transition={{ duration: 0.8, ease: "easeOut" }}
+                              key="success"
+                              initial={{ opacity: 0, scale: 0.95 }}
+                              animate={{ opacity: 1, scale: 1 }}
+                              className="flex flex-col items-center justify-center text-center py-16"
                            >
-                              <CheckCircle className="text-cinematic-blue w-20 h-20 mb-6" />
-                           </motion.div>
-                           <h3 className="font-heading text-3xl text-ice-blue mb-4">
-                              Thank you!
-                           </h3>
-                           <p className="font-body text-ice-blue/70 max-w-sm">
-                              Your inquiry has been received. Our team will be
-                              in touch within 24 hours.
-                           </p>
-                        </motion.div>
-                     ) : (
-                        <motion.form
-                           key="form"
-                           initial={{ opacity: 1 }}
-                           exit={{ opacity: 0, scale: 0.95 }}
-                           onSubmit={handleSubmit(onSubmit)}
-                           className="space-y-6"
-                        >
-                           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                              <div>
-                                 <input
-                                    {...register("fullName")}
-                                    type="text"
-                                    placeholder="Full Name *"
-                                    className="w-full bg-deep-navy border border-cinematic-blue/20 text-ice-blue placeholder-ice-blue/40 px-5 py-4 rounded-lg focus:outline-none focus:border-cinematic-blue focus:ring-1 focus:ring-cinematic-blue transition-all font-body text-sm"
-                                 />
-                                 {errors.fullName && (
-                                    <span className="text-[#FF6B6B] text-xs mt-2 block">
-                                       {errors.fullName.message}
-                                    </span>
-                                 )}
-                              </div>
-                              <div>
-                                 <input
-                                    {...register("phone")}
-                                    type="tel"
-                                    placeholder="Phone Number *"
-                                    className="w-full bg-deep-navy border border-cinematic-blue/20 text-ice-blue placeholder-ice-blue/40 px-5 py-4 rounded-lg focus:outline-none focus:border-cinematic-blue focus:ring-1 focus:ring-cinematic-blue transition-all font-body text-sm"
-                                 />
-                                 {errors.phone && (
-                                    <span className="text-[#FF6B6B] text-xs mt-2 block">
-                                       {errors.phone.message}
-                                    </span>
-                                 )}
-                              </div>
-                           </div>
+                              <CheckCircle className="w-20 h-20 text-blue-600 mb-6" />
 
-                           <div>
+                              <h3 className="text-3xl font-bold text-gray-900 mb-3">
+                                 Thank You!
+                              </h3>
+
+                              <p className="text-gray-600 max-w-md">
+                                 Your inquiry has been submitted successfully.
+                                 Our team will contact you within 24 hours.
+                              </p>
+                           </motion.div>
+                        ) : (
+                           <motion.form
+                              key="form"
+                              onSubmit={handleSubmit(onSubmit)}
+                              className="space-y-6"
+                           >
+                              <div>
+                                 <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                                    Tell us about your project
+                                 </h3>
+                                 <p className="text-gray-500">
+                                    Fill in the details and we’ll get back to
+                                    you shortly.
+                                 </p>
+                              </div>
+
+                              <div className="grid md:grid-cols-2 gap-5">
+                                 <div>
+                                    <input
+                                       {...register("fullName")}
+                                       type="text"
+                                       placeholder="Full Name *"
+                                       className="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-blue-500 outline-none transition"
+                                    />
+                                    {errors.fullName && (
+                                       <p className="text-red-500 text-sm mt-2">
+                                          {errors.fullName.message}
+                                       </p>
+                                    )}
+                                 </div>
+
+                                 <div>
+                                    <input
+                                       {...register("phone")}
+                                       type="tel"
+                                       placeholder="Phone Number *"
+                                       className="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-blue-500 outline-none transition"
+                                    />
+                                    {errors.phone && (
+                                       <p className="text-red-500 text-sm mt-2">
+                                          {errors.phone.message}
+                                       </p>
+                                    )}
+                                 </div>
+                              </div>
+
                               <input
                                  {...register("email")}
                                  type="email"
                                  placeholder="Email Address *"
-                                 className="w-full bg-deep-navy border border-cinematic-blue/20 text-ice-blue placeholder-ice-blue/40 px-5 py-4 rounded-lg focus:outline-none focus:border-cinematic-blue focus:ring-1 focus:ring-cinematic-blue transition-all font-body text-sm"
+                                 className="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-blue-500 outline-none transition"
                               />
-                              {errors.email && (
-                                 <span className="text-[#FF6B6B] text-xs mt-2 block">
-                                    {errors.email.message}
-                                 </span>
-                              )}
-                           </div>
 
-                           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                              <div>
+                              <div className="grid md:grid-cols-2 gap-5">
                                  <select
                                     {...register("service")}
-                                    className="w-full bg-deep-navy border border-cinematic-blue/20 text-ice-blue px-5 py-4 rounded-lg focus:outline-none focus:border-cinematic-blue focus:ring-1 focus:ring-cinematic-blue transition-all font-body text-sm appearance-none"
+                                    className="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-blue-500 outline-none transition"
                                  >
                                     <option value="">Select a Service *</option>
-                                    {servicesData.map((s) => (
-                                       <option key={s.id} value={s.name}>
-                                          {s.name}
+
+                                    {servicesData.map((service) => (
+                                       <option
+                                          key={service.id}
+                                          value={service.name}
+                                       >
+                                          {service.name}
                                        </option>
                                     ))}
                                  </select>
-                                 {errors.service && (
-                                    <span className="text-[#FF6B6B] text-xs mt-2 block">
-                                       {errors.service.message}
-                                    </span>
-                                 )}
-                              </div>
-                              <div>
+
                                  <input
                                     {...register("eventDate")}
                                     type="date"
-                                    className="w-full bg-deep-navy border border-cinematic-blue/20 text-ice-blue px-5 py-4 rounded-lg focus:outline-none focus:border-cinematic-blue focus:ring-1 focus:ring-cinematic-blue transition-all font-body text-sm"
-                                    style={{ colorScheme: "dark" }}
+                                    className="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-blue-500 outline-none transition"
                                  />
                               </div>
-                           </div>
 
-                           <div>
                               <select
                                  {...register("referral")}
-                                 className="w-full bg-deep-navy border border-cinematic-blue/20 text-ice-blue px-5 py-4 rounded-lg focus:outline-none focus:border-cinematic-blue focus:ring-1 focus:ring-cinematic-blue transition-all font-body text-sm appearance-none"
+                                 className="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-blue-500 outline-none transition"
                               >
                                  <option value="">
                                     How did you hear about us? *
                                  </option>
                                  <option value="Instagram">Instagram</option>
                                  <option value="Google">Google Search</option>
-                                 <option value="Referral">
-                                    Word of Mouth / Referral
-                                 </option>
+                                 <option value="Referral">Referral</option>
                                  <option value="WhatsApp">WhatsApp</option>
                                  <option value="Other">Other</option>
                               </select>
-                              {errors.referral && (
-                                 <span className="text-[#FF6B6B] text-xs mt-2 block">
-                                    {errors.referral.message}
-                                 </span>
-                              )}
-                           </div>
 
-                           <div>
                               <textarea
                                  {...register("message")}
                                  rows={5}
                                  placeholder="Tell us about your vision..."
-                                 className="w-full bg-deep-navy border border-cinematic-blue/20 text-ice-blue placeholder-ice-blue/40 px-5 py-4 rounded-lg focus:outline-none focus:border-cinematic-blue focus:ring-1 focus:ring-cinematic-blue transition-all font-body text-sm resize-none"
+                                 className="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-blue-500 outline-none resize-none transition"
                               />
+
+                              {submitError && (
+                                 <div className="bg-red-50 border border-red-200 text-red-500 p-4 rounded-2xl">
+                                    {submitError}
+                                 </div>
+                              )}
+
+                              <button
+                                 type="submit"
+                                 disabled={isSubmitting}
+                                 className="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-4 rounded-2xl transition-all duration-300 hover:scale-[1.02]"
+                              >
+                                 {isSubmitting
+                                    ? "Sending..."
+                                    : "Submit Inquiry"}
+                              </button>
+                           </motion.form>
+                        )}
+                     </AnimatePresence>
+                  </div>
+               </SectionReveal>
+
+               {/* Contact Info */}
+               <SectionReveal delay={0.2}>
+                  <div className="space-y-6">
+                     {[
+                        {
+                           icon: <Mail size={24} />,
+                           title: "Email Us",
+                           value: contactData.email,
+                        },
+                        {
+                           icon: <Phone size={24} />,
+                           title: "Call Us",
+                           value: contactData.phones.join(", "),
+                        },
+                        {
+                           icon: <MapPin size={24} />,
+                           title: "Location",
+                           value: contactData.location,
+                        },
+                     ].map((item, idx) => (
+                        <div
+                           key={idx}
+                           className="bg-white border border-gray-200 rounded-[28px] p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                        >
+                           <div className="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-4">
+                              {item.icon}
                            </div>
 
-                           {submitError && (
-                              <div className="p-4 bg-[#FF6B6B]/10 border border-[#FF6B6B]/30 rounded-lg text-[#FF6B6B] text-sm">
-                                 {submitError}
-                              </div>
-                           )}
+                           <h4 className="text-xl font-semibold text-gray-900 mb-2">
+                              {item.title}
+                           </h4>
 
-                           <button
-                              type="submit"
-                              disabled={isSubmitting}
-                              className="w-full py-4 rounded-lg font-accent uppercase tracking-wider font-semibold text-charcoal-night bg-gradient-to-r from-cinematic-blue to-rose-blush hover:brightness-110 transition-all hover:-translate-y-1 disabled:opacity-70 disabled:hover:translate-y-0"
-                           >
-                              {isSubmitting ? "Sending..." : "Submit Inquiry"}
-                           </button>
-
-                           <p className="text-center text-xs text-ice-blue/40 mt-4">
-                              This site is protected by reCAPTCHA and the Google
-                              Privacy Policy and Terms of Service apply.
+                           <p className="text-gray-600 leading-relaxed">
+                              {item.value}
                            </p>
-                        </motion.form>
-                     )}
-                  </AnimatePresence>
-               </div>
-            </SectionReveal>
-
-            {/* Right Col - Info */}
-            <SectionReveal delay={0.2} className="flex flex-col justify-center">
-               <div className="space-y-12 lg:pl-12">
-                  <div>
-                     <h2 className="font-heading text-3xl text-cinematic-blue mb-6">
-                        Contact Information
-                     </h2>
-                     <p className="font-body text-ice-blue/80 leading-relaxed max-w-md">
-                        Whether you're planning a grand wedding or a commercial
-                        production, we'd love to hear from you. Reach out
-                        directly using the information below.
-                     </p>
+                        </div>
+                     ))}
                   </div>
-
-                  <div className="space-y-8">
-                     <a
-                        href={`mailto:${contactData.email}`}
-                        className="flex items-start gap-5 group"
-                     >
-                        <div className="w-12 h-12 rounded-full border border-cinematic-blue/30 flex items-center justify-center text-cinematic-blue group-hover:bg-cinematic-blue group-hover:text-charcoal-night transition-colors shrink-0">
-                           <Mail size={20} />
-                        </div>
-                        <div>
-                           <h4 className="font-accent uppercase text-sm tracking-wider text-ice-blue mb-1">
-                              Email
-                           </h4>
-                           <p className="font-body text-ice-blue/70 group-hover:text-cinematic-blue transition-colors">
-                              {contactData.email}
-                           </p>
-                        </div>
-                     </a>
-
-                     <a
-                        href={`tel:${contactData.phones[0].replace(/\\s/g, "")}`}
-                        className="flex items-start gap-5 group"
-                     >
-                        <div className="w-12 h-12 rounded-full border border-cinematic-blue/30 flex items-center justify-center text-cinematic-blue group-hover:bg-cinematic-blue group-hover:text-charcoal-night transition-colors shrink-0">
-                           <Phone size={20} />
-                        </div>
-                        <div>
-                           <h4 className="font-accent uppercase text-sm tracking-wider text-ice-blue mb-1">
-                              Phone
-                           </h4>
-                           <div className="flex flex-col">
-                              {contactData.phones.map((phone, idx) => (
-                                 <p
-                                    key={idx}
-                                    className="font-body text-ice-blue/70 group-hover:text-cinematic-blue transition-colors"
-                                 >
-                                    {phone}
-                                 </p>
-                              ))}
-                           </div>
-                        </div>
-                     </a>
-
-                     <div className="flex items-start gap-5 group cursor-pointer">
-                        <div className="w-12 h-12 rounded-full border border-cinematic-blue/30 flex items-center justify-center text-cinematic-blue group-hover:bg-cinematic-blue group-hover:text-charcoal-night transition-colors shrink-0">
-                           <MapPin size={20} />
-                        </div>
-
-                        <div>
-                           <h4 className="font-accent uppercase text-sm tracking-wider text-ice-blue mb-1">
-                              Location
-                           </h4>
-
-                           <p className="font-body text-ice-blue/70 leading-relaxed group-hover:text-cinematic-blue transition-colors">
-                              {contactData.location}
-                           </p>
-                        </div>
-                     </div>
-                  </div>
-               </div>
-            </SectionReveal>
+               </SectionReveal>
+            </div>
          </div>
-      </div>
+      </section>
    );
 }

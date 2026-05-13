@@ -1,182 +1,121 @@
 import Link from "next/link";
-import { Camera, Phone } from "lucide-react";
-import { contactData } from "@/lib/contact-data";
+
+const cities = [
+   "Agoura Hills",
+   "Anaheim",
+   "Beverly Hills",
+   "Burbank",
+   "Calabasas",
+   "Encino",
+   "Glendale",
+   "Lancaster",
+   "Long Beach",
+   "Los Angeles",
+   "Orange County",
+   "Pasadena",
+   "Santa Clarita",
+   "Santa Monica",
+   "Sherman Oaks",
+   "Torrance",
+   "Woodland Hills",
+];
+
+const columns = [
+   {
+      title: "Quick Links",
+      links: [
+         ["Home", "/"],
+         ["Services", "/services"],
+         ["Contact", "/contact"],
+      ],
+   },
+   {
+      title: "Services",
+      links: [
+         ["Paid Advertising", "/services"],
+         ["SEO", "/services"],
+         ["Web Development", "/services"],
+         ["Consulting", "/services"],
+      ],
+   },
+   {
+      title: "Industries",
+      links: [
+         ["Home Services", "/work"],
+         ["Legal", "/work"],
+         ["Ecommerce", "/work"],
+         ["Dental", "/work"],
+         ["Addiction Treatment", "/work"],
+      ],
+   },
+   {
+      title: "Policies",
+      links: [
+         ["Privacy Policy", "/privacy"],
+         ["Terms of Service", "/terms"],
+         ["Cookie Policy", "/privacy"],
+         ["Acceptable Use Policy", "/terms"],
+      ],
+   },
+];
 
 export default function Footer() {
    return (
-      <footer
-         className="bg-[#001D39] border-t"
-         style={{
-            borderImageSource:
-               "linear-gradient(90deg, transparent, rgba(123,189,232,0.25), transparent)",
-            borderImageSlice: 1,
-         }}
-      >
-         <div className="max-w-[1440px] mx-auto px-6 md:px-12 pt-20 pb-8">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-14 mb-14">
-               {/* Left */}
+      <footer className="bg-black text-white">
+         <div className="container-brand py-16">
+            <div className="grid gap-10 md:grid-cols-[1.2fr_repeat(4,1fr)]">
                <div>
                   <Link
                      href="/"
-                     className="
-                     font-heading
-                     text-[1.5rem]
-                     text-[#BDD8E9]
-                     tracking-wide
-                     mb-4
-                     block
-                     "
+                     className="mb-5 block text-[28px] font-black tracking-[-0.08em]"
                   >
-                     Moon Creation Films
+                     moon<span className="text-[#4ea3ff]">Creation</span>
                   </Link>
-
-                  <p className="text-[#BDD8E9]/70 text-[0.95rem] max-w-sm leading-relaxed">
-                     Premium cinematography and visual storytelling crafted for
-                     the moments that deserve to be remembered forever.
+                  <p className="max-w-[220px] text-base font-medium leading-relaxed text-white/85">
+                     Expert digital marketing solutions for your business
+                     growth.
                   </p>
                </div>
 
-               {/* Center */}
-               <div className="flex flex-col gap-4">
-                  <h3
-                     className="
-                     text-[#7BBDE8]
-                     uppercase
-                     tracking-[0.18em]
-                     text-sm
-                     font-semibold
-                     mb-2
-                     "
-                  >
-                     Quick Links
-                  </h3>
+               {columns.map((column) => (
+                  <div key={column.title}>
+                     <h3 className="mb-4 text-base font-extrabold">
+                        {column.title}
+                     </h3>
+                     <ul className="space-y-3">
+                        {column.links.map(([label, href]) => (
+                           <li key={label}>
+                              <Link
+                                 href={href}
+                                 className="text-sm font-medium text-white/80 transition-colors hover:text-white"
+                              >
+                                 {label}
+                              </Link>
+                           </li>
+                        ))}
+                     </ul>
+                  </div>
+               ))}
+            </div>
 
-                  {[
-                     { name: "About Us", href: "/about" },
-                     { name: "Services", href: "/services" },
-                     { name: "Our Work", href: "/work" },
-                     { name: "Contact", href: "/blog#contact" },
-                  ].map((item) => (
-                     <Link
-                        key={item.name}
-                        href={item.href}
-                        className="
-                        text-[#BDD8E9]/75
-                        hover:text-[#7BBDE8]
-                        transition-all duration-300
-                        w-fit
-                        hover:translate-x-1
-                        "
+            {/* <div className="mt-14 border-t border-white/15 pt-10 text-center">
+               <h3 className="mb-6 text-base font-extrabold">
+                  Cities We Serve
+               </h3>
+               <div className="mx-auto flex max-w-5xl flex-wrap justify-center gap-x-7 gap-y-4">
+                  {cities.map((city) => (
+                     <span
+                        key={city}
+                        className="text-sm font-medium text-slate-400"
                      >
-                        {item.name}
-                     </Link>
+                        {city}
+                     </span>
                   ))}
                </div>
-
-               {/* Right */}
-               <div>
-                  <h3
-                     className="
-                     text-[#7BBDE8]
-                     uppercase
-                     tracking-[0.18em]
-                     text-sm
-                     font-semibold
-                     mb-5
-                     "
-                  >
-                     Connect
-                  </h3>
-
-                  <div className="flex gap-4">
-                     <a
-                        href={contactData.socialMedia.instagram}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="
-                        w-[46px] h-[46px]
-                        rounded-full
-                        border border-[#7BBDE8]/20
-                        bg-white/[0.03]
-                        backdrop-blur-md
-                        flex items-center justify-center
-                        text-[#BDD8E9]
-                        transition-all duration-300
-                        hover:border-[#7BBDE8]/50
-                        hover:bg-[#0A4174]
-                        hover:text-white
-                        hover:scale-105
-                        "
-                     >
-                        <Camera size={19} />
-                     </a>
-
-                     <a
-                        href={`https://wa.me/${contactData.socialMedia.whatsapp.replace(/\D/g, "")}`}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="
-                        w-[46px] h-[46px]
-                        rounded-full
-                        border border-[#7BBDE8]/20
-                        bg-white/[0.03]
-                        backdrop-blur-md
-                        flex items-center justify-center
-                        text-[#BDD8E9]
-                        transition-all duration-300
-                        hover:border-[#7BBDE8]/50
-                        hover:bg-[#0A4174]
-                        hover:text-white
-                        hover:scale-105
-                        "
-                     >
-                        <Phone size={19} />
-                     </a>
-                  </div>
-               </div>
-            </div>
-
-            {/* Bottom */}
-            <div
-               className="
-               border-t border-[#7BBDE8]/10
-               pt-6
-               flex flex-col md:flex-row
-               items-center justify-between
-               gap-4
-               "
-            >
-               <p className="text-[#BDD8E9]/45 text-[0.82rem]">
-                  © {new Date().getFullYear()} Moon Creation Films. All rights
-                  reserved.
+               <p className="mt-10 text-sm font-medium text-slate-400">
+                  &copy; 2026 Brand House. All rights reserved.
                </p>
-
-               <div className="flex gap-6">
-                  <Link
-                     href="/privacy"
-                     className="
-                     text-[#BDD8E9]/60
-                     hover:text-[#7BBDE8]
-                     transition-colors duration-300
-                     text-[0.82rem]
-                     "
-                  >
-                     Privacy Policy
-                  </Link>
-
-                  <Link
-                     href="/terms"
-                     className="
-                     text-[#BDD8E9]/60
-                     hover:text-[#7BBDE8]
-                     transition-colors duration-300
-                     text-[0.82rem]
-                     "
-                  >
-                     Terms of Service
-                  </Link>
-               </div>
-            </div>
+            </div> */}
          </div>
       </footer>
    );

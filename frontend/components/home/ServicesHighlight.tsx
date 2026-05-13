@@ -9,26 +9,13 @@ import { servicesData } from "@/lib/services-data";
 
 export default function ServicesHighlight() {
    const [activeModalId, setActiveModalId] = useState<string | null>(null);
+
    const featuredServices = servicesData.slice(0, 4);
 
-   // Theme colors from your palette
-   const colors = {
-      darkest: "#001D39",
-      dark: "#0A4174",
-      medium: "#49769F",
-      light: "#7BBDE8",
-      lighter: "#BDD8EF",
-      lightest: "#E6F1FB",
-      bg: "#F6FAFD",
-   };
-
    return (
-      <section
-         className="py-20 px-6 md:px-12 lg:px-16"
-         style={{ backgroundColor: colors.bg }}
-      >
+      <section className="py-20 px-6 md:px-12 lg:px-16 bg-white">
          <div className="max-w-7xl mx-auto">
-            {/* Header Section */}
+            {/* Header */}
             <motion.div
                initial={{ opacity: 0, y: 20 }}
                whileInView={{ opacity: 1, y: 0 }}
@@ -37,22 +24,15 @@ export default function ServicesHighlight() {
                className="mb-16 lg:mb-20"
             >
                <div className="space-y-4 mb-8">
-                  <p
-                     className="text-sm font-semibold tracking-widest uppercase"
-                     style={{ color: colors.dark }}
-                  >
+                  <p className="text-sm font-semibold tracking-widest uppercase text-blue-600">
                      What We Do
                   </p>
-                  <h2
-                     className="text-4xl md:text-5xl font-bold leading-tight"
-                     style={{ color: colors.darkest }}
-                  >
+
+                  <h2 className="text-4xl md:text-5xl font-bold leading-tight text-gray-900">
                      Bringing Your Brand To Life
                   </h2>
-                  <p
-                     className="text-lg max-w-2xl leading-relaxed"
-                     style={{ color: colors.medium }}
-                  >
+
+                  <p className="text-lg max-w-2xl leading-relaxed text-gray-600">
                      Comprehensive storytelling solutions designed to elevate
                      your business, engage your audience, and create lasting
                      impressions.
@@ -80,67 +60,51 @@ export default function ServicesHighlight() {
                         className="group h-full"
                      >
                         <div
-                           className="h-full rounded-2xl p-8 cursor-pointer transition-all duration-300 flex flex-col hover:shadow-xl"
-                           style={{
-                              backgroundColor: "white",
-                              borderWidth: "2px",
-                              borderColor: colors.lighter,
-                           }}
-                           onMouseEnter={(e) => {
-                              e.currentTarget.style.borderColor = colors.light;
-                              e.currentTarget.style.backgroundColor =
-                                 colors.lightest;
-                           }}
-                           onMouseLeave={(e) => {
-                              e.currentTarget.style.borderColor =
-                                 colors.lighter;
-                              e.currentTarget.style.backgroundColor = "white";
-                           }}
+                           className="
+                              h-full
+                              rounded-2xl
+                              p-8
+                              cursor-pointer
+                              transition-all
+                              duration-300
+                              flex
+                              flex-col
+                              border-2
+                              border-gray-200
+                              bg-white
+                              hover:border-blue-400
+                              hover:bg-blue-50
+                              hover:shadow-xl
+                           "
                         >
-                           {/* Icon Container */}
+                           {/* Icon */}
                            <motion.div
-                              className="inline-flex items-center justify-center w-16 h-16 rounded-xl mb-6"
-                              style={{ backgroundColor: colors.lightest }}
+                              className="inline-flex items-center justify-center w-16 h-16 rounded-xl mb-6 bg-blue-100"
                               whileHover={{ scale: 1.1 }}
                               transition={{ duration: 0.3 }}
                            >
-                              <Icon size={28} style={{ color: colors.dark }} />
+                              <Icon size={28} className="text-blue-700" />
                            </motion.div>
 
                            {/* Service Number */}
-                           <span
-                              className="text-xs font-bold uppercase tracking-wider mb-3"
-                              style={{ color: colors.light }}
-                           >
+                           <span className="text-xs font-bold uppercase tracking-wider mb-3 text-blue-600">
                               Service {String(index + 1).padStart(2, "0")}
                            </span>
 
                            {/* Service Name */}
-                           <h3
-                              className="text-xl font-bold mb-4 leading-snug transition-colors duration-300"
-                              style={{ color: colors.darkest }}
-                           >
+                           <h3 className="text-xl font-bold mb-4 leading-snug text-gray-900 transition-colors duration-300">
                               {service.name}
                            </h3>
 
                            {/* Description */}
-                           <p
-                              className="text-sm leading-relaxed mb-6 flex-grow"
-                              style={{ color: colors.medium }}
-                           >
+                           <p className="text-sm leading-relaxed mb-6 flex-grow text-gray-600">
                               {service.shortDescription}
                            </p>
 
-                           {/* CTA Link */}
-                           <div
-                              className="inline-flex items-center gap-2 font-semibold text-sm transition-all duration-300 group-hover:gap-3"
-                              style={{ color: colors.dark }}
-                           >
+                           {/* CTA */}
+                           <div className="inline-flex items-center gap-2 font-semibold text-sm text-blue-600 transition-all duration-300 group-hover:gap-3">
                               Learn More
-                              <Icons.ArrowRight
-                                 size={16}
-                                 className="transition-transform duration-300 group-hover:translate-x-1"
-                              />
+                              <Icons.ArrowRight size={16} />
                            </div>
                         </div>
                      </motion.div>
@@ -148,8 +112,7 @@ export default function ServicesHighlight() {
                })}
             </div>
 
-            {/* Bottom CTA Section */}
-            {/* CTA */}
+            {/* Button */}
             <motion.div
                initial={{
                   opacity: 0,
@@ -168,15 +131,18 @@ export default function ServicesHighlight() {
                <Link
                   href="/services"
                   className="
-                  inline-flex
-                  items-center gap-2
-                  rounded-full
-                  bg-[#001D39]
-                  px-8 py-4
-                  text-white
-                  transition-all duration-300
-                  hover:bg-[#0A4174]
-                  hover:shadow-[0_12px_30px_rgba(10,65,116,0.2)]
+                     inline-flex
+                     items-center
+                     gap-2
+                     rounded-full
+                     bg-[#001D39]
+                     px-8
+                     py-4
+                     text-white
+                     transition-all
+                     duration-300
+                     hover:bg-[#0A4174]
+                     hover:shadow-[0_12px_30px_rgba(10,65,116,0.2)]
                   "
                >
                   View All Services
@@ -185,7 +151,7 @@ export default function ServicesHighlight() {
             </motion.div>
          </div>
 
-         {/* Service Modal */}
+         {/* Modal */}
          <ServiceModal
             isOpen={activeModalId !== null}
             onClose={() => setActiveModalId(null)}

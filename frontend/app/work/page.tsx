@@ -1,123 +1,141 @@
 "use client";
 
-import React, { useState } from "react";
+import { useState, useRef } from "react";
+import { motion } from "framer-motion";
 import SectionReveal from "@/components/ui/SectionReveal";
+import ProjectCard from "@/components/work/ProjectCard";
 import Lightbox from "@/components/ui/Lightbox";
-import { Play } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
-import Image from "next/image";
-
-import { workData as projects, workCategories as categories } from "@/lib/work";
+import { workData, workCategories } from "@/lib/work";
 
 export default function WorkPage() {
-   const [activeTab, setActiveTab] = useState("All");
-   const [lightboxData, setLightboxData] = useState<{
-      isOpen: boolean;
-      videoUrl?: string;
-      title?: string;
-   }>({ isOpen: false });
+   const [selectedCategory, setSelectedCategory] = useState("All");
+
+   const [hoveredProjectId, setHoveredProjectId] = useState<string | null>(
+      null,
+   );
+
+   const [lightboxOpen, setLightboxOpen] = useState(false);
+   const [activeVideo, setActiveVideo] = useState<{
+      title: string;
+      category: string;
+      videoUrl: string;
+   } | null>(null);
+
+   const videoRefs = useRef<{
+      [key: string]: HTMLVideoElement | null;
+   }>({});
 
    const filteredProjects =
-      activeTab === "All"
-         ? projects
-         : projects.filter((p) => p.category === activeTab);
+      selectedCategory === "All"
+         ? workData
+         : workData.filter((project) => project.category === selectedCategory);
+
+   const handleHover = (projectId: string) => {
+      setHoveredProjectId(projectId);
+
+      const video = videoRefs.current[projectId];
+
+      if (video) {
+         video.play().catch(() => {});
+      }
+   };
+
+   const handleHoverEnd = (projectId: string) => {
+      const video = videoRefs.current[projectId];
+
+      if (video) {
+         video.pause();
+         video.currentTime = 0;
+      }
+   };
+
+   const openLightbox = (project: any) => {
+      setActiveVideo({
+         title: project.title,
+         category: project.category,
+         videoUrl: project.videoUrl,
+      });
+      setLightboxOpen(true);
+   };
 
    return (
-      <div className="pt-24 pb-20 min-h-screen bg-deep-navy">
-         <section className="relative w-full h-[50vh] flex items-center justify-center overflow-hidden mb-12">
-            <div className="absolute inset-0 bg-gradient-to-b from-deep-navy/80 to-deep-navy z-10" />
-            <div className="absolute inset-0 bg-midnight-blue/30" />
-            <div className="relative z-20 text-center px-4">
+      <div className="min-h-screen bg-deep-navy">
+         {/* Hero Section */}
+         <section className="section-dark pt-[142px] pb-24">
+            <div className="container-brand">
                <SectionReveal>
-                  <h1 className="font-heading text-4xl sm:text-5xl md:text-7xl text-cinematic-blue mb-4">
-                     Our Work
+                  <h1 className="headline-lg max-w-4xl">
+                     Our <br />
+                     <span className="text-gradient">Work</span>
                   </h1>
-                  <p className="font-accent text-ice-blue tracking-widest uppercase text-sm">
-                     Visual Masterpieces
+
+                  <p className="mt-5 max-w-xl text-lg font-semibold text-white/70">
+                     Explore our portfolio of cinematic productions,
+                     commercials, weddings, music videos, and brand
+                     storytelling.
                   </p>
                </SectionReveal>
             </div>
          </section>
 
-         <section className="max-w-7xl mx-auto px-6 pb-24">
-            {/* Filters */}
-            <div className="flex flex-wrap justify-center gap-2 sm:gap-4 mb-16">
-               {categories.map((cat) => (
+         {/* Content Section */}
+         <section className="max-w-7xl mx-auto px-6 py-24">
+            {/* Category Filters */}
+            <div className="flex flex-wrap justify-center gap-3 mb-16">
+               {workCategories.map((category) => (
                   <button
-                     key={cat}
-                     onClick={() => setActiveTab(cat)}
-                     className={`px-4 py-1.5 sm:px-6 sm:py-2 rounded-full font-accent text-xs sm:text-sm uppercase tracking-wider transition-all duration-300 ${
-                        activeTab === cat
-                           ? "bg-cinematic-blue text-deep-navy"
-                           : "border border-cinematic-blue/30 text-ice-blue hover:border-cinematic-blue hover:text-cinematic-blue"
+                     key={category}
+                     onClick={() => setSelectedCategory(category)}
+                     className={`px-5 py-2 rounded-full border text-xs uppercase tracking-wider transition-all duration-300 font-accent ${
+                        selectedCategory === category
+                           ? "border-blue-600 text-white bg-blue-600"
+                           : "border-gray-300 text-gray-600 hover:border-blue-600 hover:text-blue-600"
                      }`}
                   >
-                     {cat}
+                     {category}
                   </button>
                ))}
             </div>
 
-            {/* Grid */}
+            {/* Projects Grid */}
             <motion.div
                layout
-               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
-               <AnimatePresence>
-                  {filteredProjects.map((project) => (
-                     <motion.div
-                        key={project.id}
-                        layout
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        exit={{ opacity: 0, scale: 0.9 }}
-                        transition={{ duration: 0.4 }}
-                        className="relative aspect-[4/5] bg-charcoal-night rounded-xl overflow-hidden border border-cinematic-blue/10 group cursor-pointer"
-                        onClick={() =>
-                           setLightboxData({
-                              isOpen: true,
-                              videoUrl: project.videoUrl,
-                              title: project.title,
-                           })
-                        }
-                     >
-                        {/* Thumbnail Image */}
-                        <Image
-                           src={project.thumbnail}
-                           alt={project.title}
-                           fill
-                           className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                           sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        />
-
-                        {/* Dark overlay */}
-                        <div className="absolute inset-0 bg-deep-navy/40 md:bg-deep-navy/40 md:group-hover:bg-deep-navy/60 transition-colors duration-500 z-10 md:block hidden" />
-
-                        {/* Play button */}
-                        <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                           <div className="w-16 h-16 rounded-full border border-cinematic-blue flex items-center justify-center bg-deep-navy/50 backdrop-blur-sm group-hover:scale-110 transition-transform duration-500">
-                              <Play className="text-ice-blue ml-1" size={24} />
-                           </div>
-                        </div>
-
-                        <div className="absolute bottom-6 left-6 right-6 z-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                           <span className="inline-block px-3 py-1 bg-midnight-blue/80 backdrop-blur-md text-cinematic-blue text-xs font-accent uppercase tracking-widest rounded-full mb-3">
-                              {project.category}
-                           </span>
-                           <h3 className="font-heading text-2xl text-ice-blue group-hover:text-cinematic-blue transition-colors">
-                              {project.title}
-                           </h3>
-                        </div>
-                     </motion.div>
-                  ))}
-               </AnimatePresence>
+               {filteredProjects.map((project) => (
+                  <SectionReveal key={project.id}>
+                     <ProjectCard
+                        project={project}
+                        isHovered={hoveredProjectId === project.id}
+                        onHover={() => handleHover(project.id)}
+                        onHoverEnd={() => handleHoverEnd(project.id)}
+                        onClick={() => openLightbox(project)}
+                        videoRef={(ref) => {
+                           if (ref) {
+                              videoRefs.current[project.id] = ref;
+                           }
+                        }}
+                     />
+                  </SectionReveal>
+               ))}
             </motion.div>
+
+            {/* Empty State */}
+            {filteredProjects.length === 0 && (
+               <div className="text-center py-20">
+                  <p className="text-white/50 text-sm font-medium">
+                     No projects found in this category.
+                  </p>
+               </div>
+            )}
          </section>
 
          <Lightbox
-            isOpen={lightboxData.isOpen}
-            onClose={() => setLightboxData({ isOpen: false })}
-            videoUrl={lightboxData.videoUrl}
-            title={lightboxData.title}
+            isOpen={lightboxOpen}
+            onClose={() => setLightboxOpen(false)}
+            title={activeVideo?.title}
+            videoUrl={activeVideo?.videoUrl}
+            description={`Category: ${activeVideo?.category}`}
          />
       </div>
    );

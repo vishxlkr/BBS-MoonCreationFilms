@@ -4,10 +4,8 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
-import WhatsAppFAB from "@/components/layout/WhatsAppFAB";
-import CustomCursor from "@/components/ui/CustomCursor";
-import GoldProgressBar from "@/components/ui/GoldProgressBar";
 import SmoothScroll from "@/components/ui/SmoothScroll";
+import ScrollToTop from "@/components/ui/ScrollToTop";
 
 const poppinsHeading = Poppins({
    subsets: ["latin"],
@@ -48,16 +46,14 @@ export default function RootLayout({
    return (
       <html
          lang="en"
-         className={`${poppinsHeading.variable} ${poppinsBody.variable} ${poppinsAccent.variable}`}
+         className={`lenis ${poppinsHeading.variable} ${poppinsBody.variable} ${poppinsAccent.variable}`}
       >
-         <body className="antialiased overflow-x-hidden min-h-screen flex flex-col">
+         <body className="antialiased">
             <SmoothScroll>
-               <GoldProgressBar />
-               <CustomCursor />
+               <ScrollToTop />
                <Navbar />
                <main className="flex-grow">{children}</main>
                <Footer />
-               <WhatsAppFAB />
                {process.env.NEXT_PUBLIC_GA_ID && (
                   <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
                )}
