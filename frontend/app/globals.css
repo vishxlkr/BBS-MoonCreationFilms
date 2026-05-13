@@ -2,96 +2,105 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --font-heading: "Jost", sans-serif;
-  --font-body: "Outfit", sans-serif;
-  --font-accent: "Space Grotesk", sans-serif;
+   --font-heading: "Jost", sans-serif;
+   --font-body: "Outfit", sans-serif;
+   --font-accent: "Space Grotesk", sans-serif;
 
-  --color-deep-navy: var(--deep-navy);
-  --color-midnight-blue: var(--midnight-blue);
-  --color-cinematic-blue: var(--cinematic-blue);
-  --color-crescent-gold: var(--crescent-gold);
-  --color-rose-blush: var(--rose-blush);
-  --color-ice-blue: var(--ice-blue);
-  --color-charcoal-night: var(--charcoal-night);
-  --color-light-parchment: var(--light-parchment);
+   --color-deep-navy: var(--deep-navy);
+   --color-midnight-blue: var(--midnight-blue);
+   --color-cinematic-blue: var(--cinematic-blue);
+   --color-crescent-gold: var(--crescent-gold);
+   --color-rose-blush: var(--rose-blush);
+   --color-ice-blue: var(--ice-blue);
+   --color-charcoal-night: var(--charcoal-night);
+   --color-light-parchment: var(--light-parchment);
 }
 
 :root {
-  --deep-navy: #F4F7FB;
-  --midnight-blue: #163260;
-  --cinematic-blue: #2756A0;
-  --crescent-gold: #2756A0;
-  --rose-blush: #E89AB8;
-  --ice-blue: #0A1628;
-  --charcoal-night: #FFFFFF;
-  --light-parchment: #FBF3E0;
+   --deep-navy: #f4f7fb;
+   --midnight-blue: #163260;
+   --cinematic-blue: #2756a0;
+   --crescent-gold: #2756a0;
+   --rose-blush: #e89ab8;
+   --ice-blue: #0a1628;
+   --charcoal-night: #ffffff;
+   --light-parchment: #fbf3e0;
 }
 
 body {
-  background-color: var(--deep-navy);
-  color: var(--ice-blue);
-  font-family: var(--font-body);
-  font-size: 15px;
-  line-height: 1.7;
+   background-color: var(--deep-navy);
+   color: var(--ice-blue);
+   font-family: var(--font-body);
+   font-size: 15px;
+   line-height: 1.7;
 }
 
 @media (min-width: 1024px) {
-  body {
-    font-size: 16px;
-  }
+   body {
+      font-size: 16px;
+   }
 }
 
-h1, h2, h3, h4, h5, h6, .font-heading {
-  font-family: var(--font-heading);
-  letter-spacing: 0.08em;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-heading {
+   font-family: var(--font-heading);
+   letter-spacing: 0.08em;
 }
 
 h1 {
-  letter-spacing: 0.12em;
+   letter-spacing: 0.12em;
 }
 
 h2 {
-  letter-spacing: 0.10em;
+   letter-spacing: 0.1em;
 }
 
-.label, .accent, .font-accent {
-  font-family: var(--font-accent);
-  font-weight: 500;
+.label,
+.accent,
+.font-accent {
+   font-family: var(--font-accent);
+   font-weight: 500;
 }
 
 /* Custom Cursor */
 @media (min-width: 1024px) {
-  * {
-    cursor: none !important;
-  }
+   * {
+      cursor: none !important;
+   }
 }
 
 @media (prefers-reduced-motion) {
-  * {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+   * {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+   }
 }
 
 /* Lenis styles */
-html.lenis, html.lenis body {
-  height: auto;
+html.lenis,
+html.lenis body {
+   height: auto;
 }
 
 .lenis.lenis-smooth {
-  scroll-behavior: auto !important;
+   scroll-behavior: auto !important;
 }
 
 .lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
+   overscroll-behavior: contain;
 }
 
 .lenis.lenis-stopped {
-  overflow: hidden;
+   overflow: hidden;
 }
 
 .lenis.lenis-scrolling iframe {
-  pointer-events: none;
+   pointer-events: none;
 }

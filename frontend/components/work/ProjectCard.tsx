@@ -36,7 +36,7 @@ export default function ProjectCard({
          exit={{ opacity: 0, scale: 0.9 }}
          transition={{ duration: 0.4 }}
          data-cursor="play"
-         className="relative aspect-[4/5] bg-white rounded-xl overflow-hidden border border-dark-blue-300/20 group cursor-pointer shadow-sm hover:shadow-md"
+         className="relative aspect-[4/5] bg-charcoal-night rounded-xl overflow-hidden border border-cinematic-blue/20 group cursor-pointer shadow-sm hover:shadow-md"
          onClick={onClick}
          onMouseEnter={onHover}
          onMouseLeave={onHoverEnd}
@@ -65,18 +65,18 @@ export default function ProjectCard({
          />
 
          {/* Overlay */}
-         <div className="absolute inset-0 bg-dark-blue/20 group-hover:bg-dark-blue/40 transition-colors duration-500 z-10" />
+         <div className="absolute inset-0 bg-deep-navy/20 group-hover:bg-deep-navy/40 transition-colors duration-500 z-10" />
 
          {/* Play Button */}
          <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <div className="w-16 h-16 rounded-full border border-white flex items-center justify-center bg-dark-blue/50 backdrop-blur-sm group-hover:scale-110 transition-transform duration-500">
-               <Play className="text-white ml-1" size={24} />
+            <div className="w-16 h-16 rounded-full border border-ice-blue flex items-center justify-center bg-deep-navy/50 backdrop-blur-sm group-hover:scale-110 transition-transform duration-500">
+               <Play className="text-ice-blue ml-1" size={24} />
             </div>
          </div>
 
          {/* Content */}
          <div className="absolute bottom-6 left-6 right-6 z-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-            <span className="inline-block px-3 py-1 bg-dark-blue/80 backdrop-blur-md text-white text-xs font-accent uppercase tracking-widest rounded-full mb-3">
+            <span className="inline-block px-3 py-1 bg-deep-navy/80 backdrop-blur-md text-ice-blue text-xs font-accent uppercase tracking-widest rounded-full mb-3">
                {project.category}
             </span>
 

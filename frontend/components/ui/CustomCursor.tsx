@@ -28,7 +28,7 @@ export default function CustomCursor() {
          gsap.to(outerCursor.current, {
             width: 26,
             height: 26,
-            backgroundColor: "rgba(255,255,255,0.1)",
+            backgroundColor: "rgba(0, 82, 204, 0.1)",
             borderWidth: "1.5px",
             duration: 0.2,
             ease: "power2.out",
@@ -54,7 +54,7 @@ export default function CustomCursor() {
             gsap.to(outerCursor.current, {
                width: text ? 65 : 45,
                height: text ? 65 : 45,
-               backgroundColor: "white",
+               backgroundColor: "rgb(0, 82, 204)",
                borderWidth: "0px",
                duration: 0.2,
                ease: "power2.out",
