@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Jost, Outfit, Space_Grotesk } from "next/font/google";
+import { Poppins } from "next/font/google";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 import Navbar from "@/components/layout/Navbar";
@@ -9,19 +9,22 @@ import CustomCursor from "@/components/ui/CustomCursor";
 import GoldProgressBar from "@/components/ui/GoldProgressBar";
 import SmoothScroll from "@/components/ui/SmoothScroll";
 
-const jost = Jost({
+const poppinsHeading = Poppins({
   subsets: ["latin"],
   variable: "--font-heading",
+  weight: ["700", "600"],
 });
 
-const outfit = Outfit({
+const poppinsBody = Poppins({
   subsets: ["latin"],
   variable: "--font-body",
+  weight: ["400", "500"],
 });
 
-const spaceGrotesk = Space_Grotesk({
+const poppinsAccent = Poppins({
   subsets: ["latin"],
   variable: "--font-accent",
+  weight: ["600"],
 });
 
 export const metadata: Metadata = {
@@ -43,7 +46,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${jost.variable} ${outfit.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={`${poppinsHeading.variable} ${poppinsBody.variable} ${poppinsAccent.variable}`}>
       <body className="antialiased overflow-x-hidden min-h-screen flex flex-col">
         <SmoothScroll>
           <GoldProgressBar />

@@ -6,21 +6,21 @@ import InstagramSection from "@/components/home/InstagramSection";
 import BlogTeaser from "@/components/home/BlogTeaser";
 
 export const metadata = {
-  title: "Moon Creation Films",
-  icons: {
-    icon: "/assets/logo0.png", // or /favicon.ico
-  },
+   title: "Moon Creation Films",
+   icons: {
+      icon: "/assets/logo0.png", // or /favicon.ico
+   },
 };
 
 export default function Home() {
-  return (
-    <>
-      <HeroSection />
-      <AboutTeaser />
-      <ServicesHighlight />
-      <WorkTeaser />
-      <InstagramSection />
-      <BlogTeaser />
-    </>
-  );
+   return (
+      <>
+         <HeroSection />
+         {/* <AboutTeaser /> */}
+         <ServicesHighlight />
+         <WorkTeaser />
+         <InstagramSection />
+         <BlogTeaser />
+      </>
+   );
 }
