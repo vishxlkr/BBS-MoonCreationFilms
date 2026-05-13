@@ -28,7 +28,7 @@
 }
 
 body {
-   background-color: var(--deep-navy);
+   /* background-color: var(--deep-navy); */
    color: var(--ice-blue);
    font-family: var(--font-body);
    font-size: 15px;
