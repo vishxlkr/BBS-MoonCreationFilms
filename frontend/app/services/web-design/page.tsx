@@ -59,9 +59,9 @@ export default function WebDesignPage() {
    return (
       <>
          {/* Hero */}
-         <section className="section-soft pt-[140px] pb-24 overflow-hidden">
+         <section className="section-soft overflow-hidden pt-24 pb-16 sm:pt-[140px] sm:pb-24">
             <div className="container-brand">
-               <div className="grid gap-14 lg:grid-cols-[1.1fr_480px] lg:items-center">
+               <div className="grid gap-10 lg:grid-cols-[1.1fr_480px] lg:items-center lg:gap-14">
                   {/* Left */}
                   <div>
                      <span className="eyebrow">Premium Digital Experience</span>
@@ -100,7 +100,7 @@ export default function WebDesignPage() {
                      </div>
 
                      {/* CTA */}
-                     <div className="mt-10 flex flex-wrap gap-4">
+                     <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-4">
                         <a
                            href="/contact"
                            className="btn-primary inline-flex items-center gap-2"
@@ -111,7 +111,7 @@ export default function WebDesignPage() {
 
                         <Link
                            href="/services"
-                           className="inline-flex items-center gap-2 rounded-full border border-[#DCE5F3] bg-white px-7 py-4 font-semibold text-[#101a2f] transition hover:border-[#2f6bf2]/20 hover:shadow-md"
+                           className="inline-flex min-h-12 items-center justify-center gap-2 rounded-full border border-[#DCE5F3] bg-white px-7 py-4 text-center font-semibold text-[#101a2f] transition hover:border-[#2f6bf2]/20 hover:shadow-md"
                         >
                            All Services
                         </Link>
@@ -120,9 +120,9 @@ export default function WebDesignPage() {
 
                   {/* Right Mock Website */}
                   <div className="relative">
-                     <div className="absolute -top-10 -right-10 h-56 w-56 rounded-full bg-blue-100 blur-[100px]" />
+                     <div className="absolute -right-4 -top-8 h-40 w-40 rounded-full bg-blue-100 blur-[90px] sm:-right-10 sm:-top-10 sm:h-56 sm:w-56 sm:blur-[100px]" />
 
-                     <div className="relative overflow-hidden rounded-[36px] border border-[#E6ECF5] bg-white shadow-[0_30px_80px_rgba(47,107,242,0.12)]">
+                     <div className="relative overflow-hidden rounded-2xl border border-[#E6ECF5] bg-white shadow-[0_30px_80px_rgba(47,107,242,0.12)] sm:rounded-[36px]">
                         {/* Browser Header */}
                         <div className="flex items-center gap-2 border-b border-[#EEF2F7] px-6 py-5">
                            <div className="h-3 w-3 rounded-full bg-red-400" />
@@ -131,14 +131,14 @@ export default function WebDesignPage() {
                         </div>
 
                         {/* Mock Website */}
-                        <div className="p-6">
+                        <div className="p-4 sm:p-6">
                            <div className="h-12 rounded-2xl bg-[#EEF4FF]" />
 
-                           <div className="mt-5 h-[220px] rounded-[28px] bg-gradient-to-br from-[#2f6bf2] to-cyan-400" />
+                           <div className="mt-5 h-36 rounded-2xl bg-gradient-to-br from-[#2f6bf2] to-cyan-400 sm:h-[220px] sm:rounded-[28px]" />
 
-                           <div className="mt-5 grid grid-cols-2 gap-4">
-                              <div className="h-28 rounded-3xl bg-[#F5F8FD]" />
-                              <div className="h-28 rounded-3xl bg-[#F5F8FD]" />
+                           <div className="mt-5 grid grid-cols-2 gap-3 sm:gap-4">
+                              <div className="h-20 rounded-2xl bg-[#F5F8FD] sm:h-28 sm:rounded-3xl" />
+                              <div className="h-20 rounded-2xl bg-[#F5F8FD] sm:h-28 sm:rounded-3xl" />
                            </div>
 
                            <div className="mt-5 h-20 rounded-3xl bg-[#F5F8FD]" />
@@ -146,7 +146,7 @@ export default function WebDesignPage() {
                      </div>
 
                      {/* Floating Card */}
-                     <div className="absolute -bottom-6 -left-6 rounded-[28px] border border-[#E6ECF5] bg-white p-5 shadow-xl">
+                     <div className="absolute -bottom-5 left-3 rounded-2xl border border-[#E6ECF5] bg-white p-4 shadow-xl sm:-bottom-6 sm:-left-6 sm:rounded-[28px] sm:p-5">
                         <p className="text-sm font-black text-[#101a2f]">
                            Modern • Fast • Premium
                         </p>
@@ -160,7 +160,7 @@ export default function WebDesignPage() {
          </section>
 
          {/* Features */}
-         <section className="py-24">
+         <section className="py-16 sm:py-24">
             <div className="container-brand">
                <div className="text-center">
                   <span className="eyebrow">What We Deliver</span>
@@ -176,7 +176,7 @@ export default function WebDesignPage() {
                   </p>
                </div>
 
-               <div className="mt-16 grid gap-7 md:grid-cols-2 xl:grid-cols-3">
+               <div className="mt-10 grid gap-5 sm:mt-16 sm:gap-7 md:grid-cols-2 xl:grid-cols-3">
                   {features.map((feature) => {
                      const Icon = feature.icon;
 
@@ -187,11 +187,13 @@ export default function WebDesignPage() {
                               group
                               relative
                               overflow-hidden
-                              rounded-[32px]
+                              rounded-2xl
                               border
                               border-[#E8EDF5]
                               bg-white
-                              p-8
+                              p-5
+                              sm:rounded-[32px]
+                              sm:p-8
                               transition-all
                               duration-500
                               hover:-translate-y-2
@@ -205,7 +207,7 @@ export default function WebDesignPage() {
                               <Icon className="h-7 w-7 text-[#2f6bf2] transition duration-500 group-hover:text-white" />
                            </div>
 
-                           <h3 className="mt-7 text-2xl font-black text-[#101a2f]">
+                           <h3 className="mt-7 text-xl font-black text-[#101a2f] sm:text-2xl">
                               {feature.title}
                            </h3>
 
@@ -220,8 +222,8 @@ export default function WebDesignPage() {
          </section>
 
          {/* CTA */}
-         <section className="px-4 pb-24">
-            <div className="container-brand rounded-[36px] bg-gradient-to-br from-[#17204A] to-[#07111F] px-8 py-20 text-center text-white shadow-2xl">
+         <section className="px-3 pb-16 sm:px-4 sm:pb-24">
+            <div className="container-brand rounded-2xl bg-gradient-to-br from-[#17204A] to-[#07111F] px-4 py-12 text-center text-white shadow-2xl sm:rounded-[36px] sm:px-8 sm:py-20">
                <h2 className="headline-md mx-auto max-w-3xl">
                   Ready To Build a Website That{" "}
                   <span className="text-gradient">Actually Converts?</span>

@@ -1,15 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState, useRef } from "react";
 import {
    Film,
-   CheckCircle2,
    Heart,
    Sparkles,
    Camera,
-   TrendingUp,
 } from "lucide-react";
 import ServiceModal from "@/components/ui/ServiceModal";
 import { servicesData } from "@/lib/services-data";
@@ -18,6 +15,9 @@ import ProjectCard from "@/components/work/ProjectCard";
 import Lightbox from "@/components/ui/Lightbox";
 import SectionReveal from "@/components/ui/SectionReveal";
 import * as LucideIcons from "lucide-react";
+import type { LucideIcon } from "lucide-react";
+
+type WorkItem = (typeof workData)[number];
 
 const proof = [
    ["100+", "Projects Delivered"],
@@ -64,7 +64,7 @@ export default function Home() {
       }
    };
 
-   const openLightbox = (project: any) => {
+   const openLightbox = (project: WorkItem) => {
       setActiveVideo({
          title: project.title,
          category: project.category,
@@ -75,7 +75,7 @@ export default function Home() {
 
    return (
       <>
-         <section className="section-soft pt-[126px] pb-20">
+         <section className="section-soft pt-20 pb-12 sm:pt-[126px] sm:pb-20">
             <div className="container-brand text-center">
                <SectionReveal>
                   <span className="eyebrow">
@@ -95,14 +95,14 @@ export default function Home() {
                </SectionReveal>
 
                <SectionReveal>
-                  <div className="mt-14 grid gap-5 md:grid-cols-[1fr_1.5fr] md:items-end">
-                     <div className="text-left">
+                  <div className="mt-10 grid gap-5 sm:mt-14 md:grid-cols-[1fr_1.5fr] md:items-end">
+                     <div className="text-center md:text-left">
                         <span className="eyebrow">Our Impact</span>
-                        <h2 className="mt-4 text-4xl font-black leading-tight">
+                        <h2 className="mt-4 text-2xl font-black leading-tight sm:text-4xl">
                            Moments Transformed Into{" "}
                            <span className="text-gradient">Timeless Films</span>
                         </h2>
-                        <p className="mt-4 max-w-sm text-sm font-medium text-[#647086]">
+                        <p className="mx-auto mt-4 max-w-sm text-sm font-medium text-[#647086] md:mx-0">
                            Every frame tells a story. We capture what matters
                            most with cinematic precision, emotion, and artistry.
                         </p>
@@ -111,7 +111,7 @@ export default function Home() {
                         {proof.map(([value, label]) => (
                            <div key={label} className="card p-6 text-left">
                               <Film className="mb-4 text-[#2f6bf2]" size={22} />
-                              <p className="text-3xl font-black leading-none">
+                              <p className="text-2xl font-black leading-none">
                                  {value}
                               </p>
                               <p className="mt-2 text-xs font-bold text-[#647086]">
@@ -126,8 +126,8 @@ export default function Home() {
          </section>
 
          {/* web design service */}
-         <section className="py-24">
-            <div className="container-brand grid gap-12 md:grid-cols-2 md:items-center">
+         <section className="py-16 sm:py-24">
+            <div className="container-brand grid gap-10 md:grid-cols-2 md:items-center md:gap-12">
                <SectionReveal>
                   <div>
                      <span className="eyebrow">Featured Service</span>
@@ -137,7 +137,7 @@ export default function Home() {
                            Website Design Service
                         </span>
                      </h2>
-                     <p className="mt-5 text-[#647086]">
+                     <p className="mt-5 text-sm leading-7 text-[#647086] sm:text-base">
                         Build trust and increase conversions with modern,
                         premium websites designed for speed, aesthetics, and
                         business growth.
@@ -155,8 +155,8 @@ export default function Home() {
                </SectionReveal>
 
                {/* visual card */}
-               <div className="browser-card bg-[#0b1426] p-8 pt-14">
-                  <div className="rounded-lg bg-[#101d34] p-6 text-white">
+               <div className="browser-card bg-[#0b1426] p-4 pt-10 sm:p-8 sm:pt-14">
+                  <div className="rounded-lg bg-[#101d34] p-4 text-white sm:p-6">
                      {/* Browser top */}
                      <div className="mb-4 flex gap-2">
                         <div className="h-2.5 w-2.5 rounded-full bg-red-400" />
@@ -203,11 +203,11 @@ export default function Home() {
 
          {/* our services */}
          {/* our services */}
-         <section className="section-soft py-24">
+         <section className="section-soft py-16 sm:py-24">
             <div className="container-brand">
                {/* Header */}
                <SectionReveal>
-                  <div className="mb-20 text-center">
+                  <div className="mb-10 text-center sm:mb-20">
                      <h2 className="headline-md mx-auto max-w-4xl">
                         Our <span className="text-gradient">Services</span>
                      </h2>
@@ -225,14 +225,14 @@ export default function Home() {
                   {servicesData.slice(0, 6).map((service, index) => {
                      const IconComponent = LucideIcons[
                         service.icon as keyof typeof LucideIcons
-                     ] as any;
+                     ] as LucideIcon | undefined;
 
                      return (
                         <SectionReveal key={service.id} delay={index * 0.1}>
                            <button
                               key={service.id}
                               onClick={() => handleServiceClick(service.id)}
-                              className=" group relative flex h-full overflow-hidden rounded-[32px] border border-[#E8EDF5] bg-white/80 p-8 text-left backdrop-blur-xl transition-all duration-500 hover:-translate-y-3 hover:border-[#2f6bf2]/15 hover:bg-white hover:shadow-[0_30px_80px_rgba(47,107,242,0.14)]"
+                              className="group relative flex h-full overflow-hidden rounded-2xl border border-[#E8EDF5] bg-white/80 p-5 text-left backdrop-blur-xl transition-all duration-500 hover:-translate-y-3 hover:border-[#2f6bf2]/15 hover:bg-white hover:shadow-[0_30px_80px_rgba(47,107,242,0.14)] sm:rounded-[32px] sm:p-8"
                            >
                               {/* Background glow */}
                               <div className="absolute right-0 top-0 h-40 w-40 rounded-full bg-blue-100 blur-[90px] opacity-0 transition duration-700 group-hover:opacity-100" />
@@ -273,7 +273,7 @@ export default function Home() {
 
                                  {/* Content */}
                                  <div className="mt-8 flex-grow">
-                                    <h3 className="text-2xl font-black leading-tight tracking-tight text-[#101a2f] transition-colors duration-300 group-hover:text-[#2f6bf2]">
+                                    <h3 className="text-lg font-black leading-tight tracking-tight text-[#101a2f] transition-colors duration-300 group-hover:text-[#2f6bf2] sm:text-2xl">
                                        {service.name}
                                     </h3>
 
@@ -308,9 +308,9 @@ export default function Home() {
             </div>
          </section>
 
-         <section className="py-24">
+         <section className="py-16 sm:py-24">
             <SectionReveal>
-               <div className="container-brand card grid gap-10 p-8 md:grid-cols-[1fr_1fr] md:p-12">
+               <div className="container-brand card grid gap-8 p-5 sm:p-8 md:grid-cols-[1fr_1fr] md:p-12">
                   <div>
                      <h2 className="headline-md">
                         Why Your Story{" "}
@@ -324,9 +324,9 @@ export default function Home() {
                         technical specs rather than emotional impact. We believe
                         great films move hearts before they impress eyes.
                      </p>
-                     <blockquote className="mt-8 border-l-2 border-[#101a2f] pl-5 text-lg font800 font-bold italic">
-                        The best films don't just look beautiful. They make you
-                        feel something.
+                     <blockquote className="mt-8 border-l-2 border-[#101a2f] pl-5 text-base font800 font-bold italic sm:text-lg">
+                        The best films don&apos;t just look beautiful. They
+                        make you feel something.
                      </blockquote>
                   </div>
                   <div className="space-y-4">
@@ -351,11 +351,11 @@ export default function Home() {
          </section>
 
          {/* our work */}
-         <section className="section-soft py-24">
+         <section className="section-soft py-16 sm:py-24">
             <div className="container-brand">
                {/* Header */}
                <SectionReveal>
-                  <div className="mb-20 text-center">
+                  <div className="mb-10 text-center sm:mb-20">
                      <span className="eyebrow">What We Create</span>
                      <h2 className="headline-md mx-auto mt-4 max-w-4xl">
                         Films That{" "}
@@ -405,8 +405,8 @@ export default function Home() {
          </section>
 
          {/* sentences */}
-         <section className="py-24">
-            <div className="container-brand grid gap-12 md:grid-cols-3">
+         <section className="py-16 sm:py-24">
+            <div className="container-brand grid gap-10 md:grid-cols-3 md:gap-12">
                {[
                   [Camera, "Stunning Visuals That Captivate"],
                   [Heart, "Stories That Connect Emotionally"],
@@ -415,7 +415,7 @@ export default function Home() {
                   <SectionReveal key={String(title)} delay={index * 0.1}>
                      <div>
                         <Icon className="mb-4 text-[#2f6bf2]" size={26} />
-                        <h3 className="text-3xl font-black leading-tight">
+                        <h3 className="text-2xl font-black leading-tight sm:text-3xl">
                            {String(title)}
                         </h3>
                         <p className="mt-4 text-sm font-medium text-[#647086]">
@@ -429,17 +429,18 @@ export default function Home() {
          </section>
 
          {/* blue card */}
-         <section className="px-4 pb-24">
+         <section className="px-3 pb-16 sm:px-4 sm:pb-24">
             <SectionReveal>
-               <div className="container-brand rounded-2xl bg-gradient-to-br from-[#17204a] to-[#07111f] px-6 py-16 text-center text-white shadow-2xl">
+               <div className="container-brand rounded-2xl bg-gradient-to-br from-[#17204a] to-[#07111f] px-4 py-12 text-center text-white shadow-2xl sm:px-6 sm:py-16">
                   <Heart className="mx-auto mb-5 text-[#75a7ff]" size={32} />
                   <h2 className="headline-md mx-auto max-w-3xl">
                      Ready to Tell Your{" "}
                      <span className="text-gradient">Story Cinematically?</span>
                   </h2>
                   <p className="mx-auto mt-5 max-w-xl text-sm font-semibold text-white/70">
-                     Let's create something beautiful together. Get in touch to
-                     discuss your vision and how we can bring it to life.
+                     Let&apos;s create something beautiful together. Get in
+                     touch to discuss your vision and how we can bring it to
+                     life.
                   </p>
                   <Link href="/contact" className="btn-primary mt-8">
                      Start Your Project

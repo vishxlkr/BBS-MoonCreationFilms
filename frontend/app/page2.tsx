@@ -96,7 +96,7 @@ export default function Home() {
                   <h2 className="headline-md">
                      Why Most{" "}
                      <span className="text-gradient">Marketing Efforts</span>{" "}
-                     Don't Convert
+                     Don&apos;t Convert
                   </h2>
                   <p className="mt-6 max-w-lg text-[#647086]">
                      Most businesses are not losing because of a lack of
@@ -251,7 +251,7 @@ export default function Home() {
                   <span className="text-gradient">Falling Short.</span>
                </h2>
                <p className="mx-auto mt-5 max-w-xl text-sm font-semibold text-white/70">
-                  We'll review your current campaigns, website, and conversion
+                  We&apos;ll review your current campaigns, website, and conversion
                   flow to identify where leads are being lost.
                </p>
                <Link href="/contact" className="btn-primary mt-8">

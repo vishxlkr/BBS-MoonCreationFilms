@@ -1,5 +1,4 @@
 import { Skeleton } from "@/components/ui/Skeleton";
-import SectionReveal from "@/components/ui/SectionReveal";
 
 export default function Loading() {
    return (

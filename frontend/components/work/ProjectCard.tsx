@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
@@ -36,7 +36,7 @@ export default function ProjectCard({
          exit={{ opacity: 0, scale: 0.9 }}
          transition={{ duration: 0.4 }}
          data-cursor="play"
-         className="relative aspect-[4/5] bg-charcoal-night rounded-xl overflow-hidden border border-cinematic-blue/20 group cursor-pointer shadow-sm hover:shadow-md"
+         className="group relative aspect-[4/5] cursor-pointer overflow-hidden rounded-xl border border-cinematic-blue/20 bg-charcoal-night shadow-sm hover:shadow-md"
          onClick={onClick}
          onMouseEnter={onHover}
          onMouseLeave={onHoverEnd}
@@ -68,19 +68,19 @@ export default function ProjectCard({
          <div className="absolute inset-0 bg-deep-navy/20 group-hover:bg-deep-navy/40 transition-colors duration-500 z-10" />
 
          {/* Play Button */}
-         <div className="absolute inset-0 flex items-center justify-center z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-            <div className="w-16 h-16 rounded-full border border-ice-blue flex items-center justify-center bg-deep-navy/50 backdrop-blur-sm group-hover:scale-110 transition-transform duration-500">
-               <Play className="text-ice-blue ml-1" size={24} />
+         <div className="absolute inset-0 z-20 flex items-center justify-center opacity-100 transition-opacity duration-500 sm:opacity-0 sm:group-hover:opacity-100">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full border border-ice-blue bg-deep-navy/50 backdrop-blur-sm transition-transform duration-500 group-hover:scale-110 sm:h-16 sm:w-16">
+               <Play className="ml-1 text-ice-blue" size={22} />
             </div>
          </div>
 
          {/* Content */}
-         <div className="absolute bottom-6 left-6 right-6 z-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-            <span className="inline-block px-3 py-1 bg-deep-navy/80 backdrop-blur-md text-ice-blue text-xs font-accent uppercase tracking-widest rounded-full mb-3">
+         <div className="absolute bottom-4 left-4 right-4 z-20 translate-y-0 transition-transform duration-500 sm:bottom-6 sm:left-6 sm:right-6 sm:translate-y-4 sm:group-hover:translate-y-0">
+            <span className="mb-2 inline-block rounded-full bg-deep-navy/80 px-3 py-1 font-accent text-xs uppercase tracking-widest text-ice-blue backdrop-blur-md sm:mb-3">
                {project.category}
             </span>
 
-            <h3 className="font-heading text-2xl text-white">
+            <h3 className="font-heading text-lg leading-tight text-white sm:text-2xl">
                {project.title}
             </h3>
          </div>

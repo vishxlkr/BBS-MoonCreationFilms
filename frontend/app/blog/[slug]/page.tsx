@@ -2,7 +2,7 @@ import React from "react";
 import SectionReveal from "@/components/ui/SectionReveal";
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowLeft, Share2 } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { blogsData } from "@/lib/blog";
 import { notFound } from "next/navigation";
 

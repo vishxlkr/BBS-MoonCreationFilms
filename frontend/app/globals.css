@@ -27,6 +27,14 @@ html.lenis body {
    scroll-behavior: auto !important;
 }
 
+html {
+   scroll-behavior: auto !important;
+}
+
+body {
+   scroll-behavior: auto !important;
+}
+
 .lenis.lenis-smooth [data-lenis-prevent] {
    overscroll-behavior: contain;
 }
@@ -46,7 +54,7 @@ html.lenis body {
 html {
    scroll-padding-top: 86px;
    background: #ffffff;
-   scroll-behavior: smooth;
+   overflow-x: hidden;
 }
 
 body {
@@ -58,11 +66,13 @@ body {
    line-height: 1.6;
    text-rendering: optimizeLegibility;
    width: 100%;
+   overflow-x: hidden;
 }
 
 main {
    flex: 1;
    width: 100%;
+   min-width: 0;
 }
 
 a {
@@ -75,6 +85,13 @@ input,
 select,
 textarea {
    font: inherit;
+   min-width: 0;
+}
+
+img,
+video,
+iframe {
+   max-width: 100%;
 }
 
 h1,
@@ -148,11 +165,63 @@ h6,
    color: #ffffff;
    padding: 12px 24px;
    font-weight: 800;
+   max-width: 100%;
+   text-align: center;
+   white-space: normal;
    box-shadow: 0 14px 30px rgba(47, 107, 242, 0.28);
    transition:
       transform 180ms ease,
       box-shadow 180ms ease,
       background 180ms ease;
+}
+
+@media (max-width: 640px) {
+   html {
+      scroll-padding-top: 72px;
+   }
+
+   body {
+      font-size: 14px;
+   }
+
+   .container-brand {
+      width: min(100% - 28px, 1180px);
+   }
+
+   .eyebrow {
+      max-width: 100%;
+      padding: 5px 10px;
+      font-size: 9px;
+      line-height: 1.35;
+      text-align: center;
+      white-space: normal;
+   }
+
+   .headline-xl {
+      font-size: clamp(2.1rem, 13vw, 3.8rem);
+      line-height: 1;
+   }
+
+   .headline-lg {
+      font-size: clamp(1.85rem, 10vw, 3.2rem);
+      line-height: 1.05;
+   }
+
+   .headline-md {
+      font-size: clamp(1.65rem, 8vw, 2.6rem);
+      line-height: 1.1;
+   }
+
+   .btn-primary {
+      min-height: 48px;
+      width: 100%;
+      padding-inline: 18px;
+   }
+
+   .card,
+   .browser-card {
+      border-radius: 8px;
+   }
 }
 
 .btn-primary:hover {

@@ -46,7 +46,7 @@ export default function RootLayout({
    return (
       <html
          lang="en"
-         className={`lenis ${poppinsHeading.variable} ${poppinsBody.variable} ${poppinsAccent.variable}`}
+         className={`${poppinsHeading.variable} ${poppinsBody.variable} ${poppinsAccent.variable}`}
       >
          <body className="antialiased">
             <SmoothScroll>

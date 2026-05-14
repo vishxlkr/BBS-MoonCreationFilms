@@ -17,9 +17,9 @@ export default function BlogListingPage() {
          : posts.filter((post) => post.category === activeCategory);
 
    return (
-      <div className="pb-20 min-h-screen bg-white">
+      <div className="min-h-screen bg-white pb-16 sm:pb-20">
          {/* Hero Section */}
-         <section className="section-dark pt-[142px] pb-24">
+         <section className="section-dark pt-24 pb-16 sm:pt-[142px] sm:pb-24">
             <div className="container-brand">
                <SectionReveal>
                   <h1 className="headline-lg max-w-4xl">
@@ -27,7 +27,7 @@ export default function BlogListingPage() {
                      <span className="text-gradient">Insights</span>
                   </h1>
 
-                  <p className="mt-5 max-w-xl text-lg font-semibold text-white/70">
+                  <p className="mt-5 max-w-xl text-base font-semibold text-white/70 sm:text-lg">
                      Behind the lens of Moon Creation Films. Explore our
                      thoughts on filmmaking, industry trends, and creative
                      insights.
@@ -37,13 +37,13 @@ export default function BlogListingPage() {
          </section>
 
          {/* Content Section */}
-         <section className="max-w-7xl mx-auto px-6 pb-24 py-24">
-            <div className="flex flex-wrap justify-center gap-3 mb-16">
+         <section className="mx-auto max-w-7xl px-3 py-16 sm:px-6 sm:py-24">
+            <div className="mb-10 flex flex-wrap justify-center gap-2 sm:mb-16 sm:gap-3">
                {["All", "Weddings", "Tips", "BTS", "Industry"].map((tag) => (
                   <button
                      key={tag}
                      onClick={() => setActiveCategory(tag)}
-                     className={`px-5 py-2 rounded-full border text-xs uppercase tracking-wider transition-colors font-accent ${
+                     className={`rounded-full border px-4 py-2 text-xs uppercase tracking-wider transition-colors font-accent sm:px-5 ${
                         activeCategory === tag
                            ? "border-blue-600 text-white bg-blue-600"
                            : "border-gray-300 text-gray-600 hover:border-blue-600 hover:text-blue-600"
@@ -54,7 +54,7 @@ export default function BlogListingPage() {
                ))}
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 gap-5 sm:gap-8 md:grid-cols-2 lg:grid-cols-3">
                {filteredPosts.map((post, index) => (
                   <SectionReveal key={post.id}>
                      <Link
@@ -73,8 +73,8 @@ export default function BlogListingPage() {
                               />
                               <div className="absolute inset-0 bg-gray-900/20 group-hover:bg-transparent transition-colors duration-700" />
                            </div>
-                           <div className="p-6 flex flex-col flex-grow">
-                              <div className="flex items-center justify-between mb-4">
+                           <div className="flex flex-grow flex-col p-5 sm:p-6">
+                              <div className="mb-4 flex flex-wrap items-center justify-between gap-2">
                                  <span className="px-3 py-1 bg-blue-100 text-blue-600 text-xs font-accent uppercase tracking-wider rounded-full">
                                     {post.category}
                                  </span>
@@ -82,13 +82,13 @@ export default function BlogListingPage() {
                                     <Clock size={12} /> {post.readTime}
                                  </span>
                               </div>
-                              <h3 className="font-heading text-2xl text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                              <h3 className="font-heading mb-3 text-xl text-gray-900 transition-colors group-hover:text-blue-600 sm:text-2xl">
                                  {post.title}
                               </h3>
                               <p className="font-body text-gray-600 text-sm flex-grow mb-6">
                                  {post.excerpt}
                               </p>
-                              <div className="flex items-center justify-between text-gray-500 text-xs font-body mt-auto pt-4 border-t border-gray-200">
+                              <div className="mt-auto flex flex-wrap items-center justify-between gap-2 border-t border-gray-200 pt-4 font-body text-xs text-gray-500">
                                  <span>Moon Creation Films</span>
                                  <span>{post.date}</span>
                               </div>

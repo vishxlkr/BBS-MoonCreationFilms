@@ -1,35 +1,12 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import ServiceModal from "@/components/ui/ServiceModal";
 import { servicesData } from "@/lib/services-data";
 import * as LucideIcons from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import SectionReveal from "@/components/ui/SectionReveal";
-
-const steps = [
-   [
-      "1",
-      "Discovery",
-      "We begin by understanding your goals, audience, and market landscape.",
-   ],
-   [
-      "2",
-      "Strategy",
-      "We build a customized plan that aligns with objectives and budget.",
-   ],
-   [
-      "3",
-      "Execution",
-      "Our team implements the strategy with precision and clear ownership.",
-   ],
-   [
-      "4",
-      "Optimization",
-      "We monitor performance and make data-driven improvements.",
-   ],
-];
 
 export default function ServicesPage() {
    const [isModalOpen, setIsModalOpen] = useState(false);
@@ -44,14 +21,14 @@ export default function ServicesPage() {
 
    return (
       <>
-         <section className="section-dark pt-[142px] pb-24">
+         <section className="section-dark pt-20 pb-12 sm:pt-[142px] sm:pb-24">
             <div className="container-brand">
                <SectionReveal>
                   <h1 className="headline-lg max-w-4xl">
                      Our <br />
                      <span className="text-gradient">Services</span>
                   </h1>
-                  <p className="mt-5 max-w-xl text-lg font-semibold text-white/70">
+                  <p className="mt-5 max-w-xl text-base font-semibold text-white/70 sm:text-lg">
                      Expert marketing solutions in SEO, PPC advertising, and
                      website development to grow your business.
                   </p>
@@ -62,7 +39,7 @@ export default function ServicesPage() {
          {/* web design */}
          {/* Featured Web Design Service */}
          {/* Featured Web Design Service */}
-         <section className="py-14">
+         <section className="py-12 sm:py-14">
             <div className="container-brand">
                <Link
                   href="/services/web-design"
@@ -75,7 +52,8 @@ export default function ServicesPage() {
             border
             border-[#E8EDF5]
             bg-white
-            p-6
+            p-5
+            sm:p-6
             lg:p-8
             transition-all
             duration-500
@@ -97,7 +75,7 @@ export default function ServicesPage() {
                            Featured Service
                         </div>
 
-                        <h2 className="text-3xl md:text-4xl font-black leading-tight text-[#101a2f]">
+                        <h2 className="text-xl font-black leading-tight text-[#101a2f] sm:text-3xl md:text-4xl">
                            Premium{" "}
                            <span className="text-gradient">
                               Web Design Service
@@ -111,7 +89,7 @@ export default function ServicesPage() {
                         </p>
 
                         {/* Small features */}
-                        <div className="mt-6 flex flex-wrap gap-3">
+                        <div className="mt-6 flex flex-wrap gap-2 sm:gap-3">
                            {[
                               "Premium UI/UX",
                               "SEO Optimized",
@@ -152,7 +130,7 @@ export default function ServicesPage() {
                      {/* Right Compact Visual */}
 
                      <div className="relative mx-auto w-full max-w-[480px]">
-                        <div className="rounded-[28px] bg-gradient-to-br from-[#17204A] to-[#07111F] p-4 shadow-xl">
+                        <div className="rounded-2xl bg-gradient-to-br from-[#17204A] to-[#07111F] p-3 shadow-xl sm:rounded-[28px] sm:p-4">
                            <div className="rounded-[22px] bg-[#0B1426] p-4">
                               {/* Browser top */}
                               <div className="mb-4 flex gap-2">
@@ -176,7 +154,7 @@ export default function ServicesPage() {
                         </div>
 
                         {/* Floating badge */}
-                        <div className="absolute -bottom-3 -left-3 rounded-2xl border border-[#E6ECF5] bg-white px-4 py-3 shadow-lg">
+                        <div className="absolute -bottom-3 left-3 rounded-2xl border border-[#E6ECF5] bg-white px-4 py-3 shadow-lg sm:-left-3">
                            <p className="text-xs font-bold text-[#101a2f]">
                               Modern • Fast
                            </p>
@@ -191,7 +169,7 @@ export default function ServicesPage() {
          <section className="section-soft py-8">
             <div className="container-brand">
                {/* Header */}
-               <div className="mb-20 text-center">
+               <div className="mb-10 text-center sm:mb-20">
                   <h2 className="headline-md mx-auto mt-4 max-w-4xl">
                      Our <span className="text-gradient">Services</span>
                   </h2>
@@ -208,7 +186,7 @@ export default function ServicesPage() {
                   {servicesData.map((service) => {
                      const IconComponent = LucideIcons[
                         service.icon as keyof typeof LucideIcons
-                     ] as any;
+                     ] as LucideIcon | undefined;
 
                      return (
                         <button
@@ -222,7 +200,8 @@ export default function ServicesPage() {
                      border
                      border-[#E8EDF5]
                      bg-white/80
-                     p-8
+                     p-5
+                     sm:p-8
                      text-left
                      backdrop-blur-xl
                      transition-all
@@ -272,7 +251,7 @@ export default function ServicesPage() {
 
                               {/* Content */}
                               <div className="mt-8 flex-grow">
-                                 <h3 className="text-2xl font-black leading-tight tracking-tight text-[#101a2f] transition-colors duration-300 group-hover:text-[#2f6bf2]">
+                                 <h3 className="text-lg font-black leading-tight tracking-tight text-[#101a2f] transition-colors duration-300 group-hover:text-[#2f6bf2] sm:text-2xl">
                                     {service.name}
                                  </h3>
 
@@ -296,15 +275,15 @@ export default function ServicesPage() {
             </div>
          </section>
 
-         <section className="px-4 py-24">
-            <div className="container-brand rounded-2xl bg-gradient-to-br from-[#17204a] to-[#07111f] px-6 py-16 text-center text-white shadow-2xl">
+         <section className="px-3 py-16 sm:px-4 sm:py-24">
+            <div className="container-brand rounded-2xl bg-gradient-to-br from-[#17204a] to-[#07111f] px-4 py-12 text-center text-white shadow-2xl sm:px-6 sm:py-16">
                <h2 className="headline-md mx-auto max-w-4xl">
                   See Where Your Marketing Is{" "}
                   <span className="text-gradient">Falling Short.</span>
                </h2>
                <p className="mx-auto mt-5 max-w-xl text-sm font-semibold text-white/70">
-                  We'll review your campaigns, website, and conversion flow to
-                  identify the strongest opportunities.
+                  We&apos;ll review your campaigns, website, and conversion flow
+                  to identify the strongest opportunities.
                </p>
                <Link href="/contact" className="btn-primary mt-8">
                   Get Your Free Marketing Audit
@@ -319,29 +298,5 @@ export default function ServicesPage() {
             serviceId={selectedServiceId}
          />
       </>
-   );
-}
-
-function Step({
-   num,
-   title,
-   text,
-}: {
-   num: string;
-   title: string;
-   text: string;
-}) {
-   return (
-      <div>
-         <div className="mx-auto mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#1f1f23] text-lg font-black text-white">
-            {num}
-         </div>
-         <h3 className="text-lg font-black">
-            Step {num}: {title}
-         </h3>
-         <p className="mx-auto mt-2 max-w-xs text-sm font-medium text-[#647086]">
-            {text}
-         </p>
-      </div>
    );
 }

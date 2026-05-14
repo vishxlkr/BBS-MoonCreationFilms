@@ -109,7 +109,11 @@ export async function POST(req: Request) {
    } catch (error) {
       if (error instanceof z.ZodError) {
          return NextResponse.json(
-            { error: "Validation failed: " + (error as any).errors[0].message },
+            {
+               error:
+                  "Validation failed: " +
+                  (error.issues[0]?.message || "Invalid form data"),
+            },
             { status: 400 },
          );
       }

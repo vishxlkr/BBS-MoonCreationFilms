@@ -18,13 +18,15 @@ export default function Navbar() {
 
    return (
       <header className="fixed inset-x-0 top-0 z-50 bg-[#e9eaed]/95 backdrop-blur border-b border-black/5">
-         <div className="container-brand flex h-[74px] items-center justify-between gap-6">
+         <div className="container-brand flex h-16 items-center justify-between gap-3 md:h-[74px] md:gap-6">
             <Link
                href="/"
-               className="flex items-center text-[30px] font-black tracking-[-0.08em] text-black"
+               className="flex min-w-0 items-center text-[20px] font-black tracking-[-0.04em] text-black sm:text-[24px] md:text-[28px] md:tracking-[-0.08em]"
             >
                moon<span className="text-gradient">Creation</span>
-               <span className="ml-0.5 text-[16px] text-[#4ea3ff]">films</span>
+               <span className="ml-0.5 text-[11px] text-[#4ea3ff] sm:text-[13px] md:text-[15px]">
+                  films
+               </span>
             </Link>
 
             <nav className="hidden items-center gap-8 md:flex">
@@ -66,16 +68,17 @@ export default function Navbar() {
 
             <button
                type="button"
-               className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white text-[#101a2f] md:hidden"
+               className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white text-[#101a2f] md:hidden"
                onClick={() => setOpen((value) => !value)}
                aria-label="Toggle navigation"
+               aria-expanded={open}
             >
                {open ? <X size={22} /> : <Menu size={22} />}
             </button>
          </div>
 
          {open && (
-            <div className="border-t border-black/5 bg-white px-4 py-5 md:hidden">
+            <div className="max-h-[calc(100vh-64px)] overflow-y-auto border-t border-black/5 bg-white px-3 py-4 md:hidden">
                <div className="mx-auto flex max-w-sm flex-col gap-2">
                   {navLinks.map((link) => {
                      const active =
@@ -86,9 +89,9 @@ export default function Navbar() {
                            key={link.name}
                            href={link.href}
                            onClick={() => setOpen(false)}
-                           className={`rounded-lg px-4 py-3 text-base font-bold transition-colors ${
+                           className={`rounded-lg px-4 py-3 text-sm font-bold transition-colors ${
                               active
-                                 ? "bg-[#d4af37] text-white"
+                                 ? "bg-[#2f6bf2] text-white"
                                  : "text-[#101a2f] hover:bg-[#f5f8fc]"
                            }`}
                         >
@@ -99,7 +102,7 @@ export default function Navbar() {
                   <Link
                      href="/contact"
                      onClick={() => setOpen(false)}
-                     className="btn-primary mt-2"
+                     className="btn-primary mt-2 w-full"
                   >
                      Contact Us
                   </Link>

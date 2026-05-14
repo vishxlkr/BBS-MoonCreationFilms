@@ -9,6 +9,8 @@ import Lightbox from "@/components/ui/Lightbox";
 
 import { workData as workItems } from "@/lib/work";
 
+type WorkItem = (typeof workItems)[number];
+
 export default function WorkTeaser() {
    const [lightboxOpen, setLightboxOpen] = useState(false);
    const [activeVideo, setActiveVideo] = useState<{
@@ -17,7 +19,7 @@ export default function WorkTeaser() {
       videoUrl: string;
    } | null>(null);
 
-   const openLightbox = (item: any) => {
+   const openLightbox = (item: WorkItem) => {
       setActiveVideo(item);
       setLightboxOpen(true);
    };

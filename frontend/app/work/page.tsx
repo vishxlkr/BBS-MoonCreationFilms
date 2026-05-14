@@ -7,6 +7,8 @@ import ProjectCard from "@/components/work/ProjectCard";
 import Lightbox from "@/components/ui/Lightbox";
 import { workData, workCategories } from "@/lib/work";
 
+type WorkItem = (typeof workData)[number];
+
 export default function WorkPage() {
    const [selectedCategory, setSelectedCategory] = useState("All");
 
@@ -49,7 +51,7 @@ export default function WorkPage() {
       }
    };
 
-   const openLightbox = (project: any) => {
+   const openLightbox = (project: WorkItem) => {
       setActiveVideo({
          title: project.title,
          category: project.category,
@@ -61,7 +63,7 @@ export default function WorkPage() {
    return (
       <div className="min-h-screen bg-deep-navy">
          {/* Hero Section */}
-         <section className="section-dark pt-[142px] pb-24">
+         <section className="section-dark pt-24 pb-16 sm:pt-[142px] sm:pb-24">
             <div className="container-brand">
                <SectionReveal>
                   <h1 className="headline-lg max-w-4xl">
@@ -69,7 +71,7 @@ export default function WorkPage() {
                      <span className="text-gradient">Work</span>
                   </h1>
 
-                  <p className="mt-5 max-w-xl text-lg font-semibold text-white/70">
+                  <p className="mt-5 max-w-xl text-base font-semibold text-white/70 sm:text-lg">
                      Explore our portfolio of cinematic productions,
                      commercials, weddings, music videos, and brand
                      storytelling.
@@ -79,14 +81,14 @@ export default function WorkPage() {
          </section>
 
          {/* Content Section */}
-         <section className="max-w-7xl mx-auto px-6 py-24">
+         <section className="mx-auto max-w-7xl px-3 py-16 sm:px-6 sm:py-24">
             {/* Category Filters */}
-            <div className="flex flex-wrap justify-center gap-3 mb-16">
+            <div className="mb-10 flex flex-wrap justify-center gap-2 sm:mb-16 sm:gap-3">
                {workCategories.map((category) => (
                   <button
                      key={category}
                      onClick={() => setSelectedCategory(category)}
-                     className={`px-5 py-2 rounded-full border text-xs uppercase tracking-wider transition-all duration-300 font-accent ${
+                     className={`rounded-full border px-4 py-2 text-xs uppercase tracking-wider transition-all duration-300 font-accent sm:px-5 ${
                         selectedCategory === category
                            ? "border-blue-600 text-white bg-blue-600"
                            : "border-gray-300 text-gray-600 hover:border-blue-600 hover:text-blue-600"
@@ -100,7 +102,7 @@ export default function WorkPage() {
             {/* Projects Grid */}
             <motion.div
                layout
-               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+               className="grid grid-cols-1 gap-5 sm:gap-8 md:grid-cols-2 lg:grid-cols-3"
             >
                {filteredProjects.map((project) => (
                   <SectionReveal key={project.id}>

@@ -55,8 +55,10 @@ export default function ContactSection() {
          }
 
          setIsSuccess(true);
-      } catch (err: any) {
-         setSubmitError(err.message);
+      } catch (err) {
+         setSubmitError(
+            err instanceof Error ? err.message : "Failed to send message",
+         );
       } finally {
          setIsSubmitting(false);
       }
@@ -65,29 +67,29 @@ export default function ContactSection() {
    return (
       <section
          id="contact"
-         className="scroll-mt-32 bg-gradient-to-b from-gray-50 to-white py-18 px-6"
+         className="scroll-mt-32 bg-gradient-to-b from-gray-50 to-white px-3 py-14 sm:px-6 sm:py-18"
       >
          <div className="max-w-7xl mx-auto">
             {/* Heading */}
             <SectionReveal>
-               <div className="text-center mb-16">
-                  <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-5">
+               <div className="mb-10 text-center sm:mb-16">
+                  <h2 className="mb-5 text-3xl font-bold text-gray-900 sm:text-4xl md:text-5xl">
                      Let’s Create Something{" "}
                      <span className="text-blue-600">Extraordinary</span>
                   </h2>
 
-                  <p className="max-w-2xl mx-auto text-gray-600 text-lg">
-                     Whether it's weddings, cinematic films, commercial shoots
+                  <p className="mx-auto max-w-2xl text-base text-gray-600 sm:text-lg">
+                     Whether it&apos;s weddings, cinematic films, commercial shoots
                      or creative storytelling — our team would love to bring
                      your vision to life.
                   </p>
                </div>
             </SectionReveal>
 
-            <div className="grid lg:grid-cols-[1.45fr_0.75fr] gap-8 items-start">
+            <div className="grid items-start gap-6 lg:grid-cols-[1.45fr_0.75fr] lg:gap-8">
                {/* Contact Form */}
                <SectionReveal>
-                  <div className="bg-white rounded-[32px] border border-gray-200 shadow-xl p-8 md:p-10 hover:shadow-2xl transition-all duration-500">
+                  <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-xl transition-all duration-500 hover:shadow-2xl sm:p-8 md:rounded-[32px] md:p-10">
                      <AnimatePresence mode="wait">
                         {isSuccess ? (
                            <motion.div
@@ -123,7 +125,7 @@ export default function ContactSection() {
                                  </p>
                               </div>
 
-                              <div className="grid md:grid-cols-2 gap-5">
+                              <div className="grid gap-5 md:grid-cols-2">
                                  <div>
                                     <input
                                        {...register("fullName")}
@@ -160,7 +162,7 @@ export default function ContactSection() {
                                  className="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-blue-500 outline-none transition"
                               />
 
-                              <div className="grid md:grid-cols-2 gap-5">
+                              <div className="grid gap-5 md:grid-cols-2">
                                  <select
                                     {...register("service")}
                                     className="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-blue-500 outline-none transition"
@@ -248,7 +250,7 @@ export default function ContactSection() {
                      ].map((item, idx) => (
                         <div
                            key={idx}
-                           className="bg-white border border-gray-200 rounded-[28px] p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                           className="rounded-2xl border border-gray-200 bg-white p-5 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-6 md:rounded-[28px]"
                         >
                            <div className="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-4">
                               {item.icon}

@@ -55,8 +55,10 @@ export default function ContactPage() {
          }
 
          setIsSuccess(true);
-      } catch (err: any) {
-         setSubmitError(err.message);
+      } catch (err) {
+         setSubmitError(
+            err instanceof Error ? err.message : "Failed to send message",
+         );
       } finally {
          setIsSubmitting(false);
       }
@@ -80,12 +82,12 @@ export default function ContactPage() {
          </section> */}
 
          {/* Contact Form Section */}
-         <section className="scroll-mt-32 bg-gradient-to-b from-gray-50 to-white mt-10 py-18 px-6">
+         <section className="mt-10 scroll-mt-32 bg-gradient-to-b from-gray-50 to-white px-3 py-14 sm:px-6 sm:py-18">
             <div className="max-w-7xl mx-auto">
-               <div className="grid lg:grid-cols-[1.45fr_0.75fr] gap-8 items-start">
+               <div className="grid items-start gap-6 lg:grid-cols-[1.45fr_0.75fr] lg:gap-8">
                   {/* Contact Form */}
                   <SectionReveal>
-                     <div className="bg-white rounded-[32px] border border-gray-200 shadow-xl p-8 md:p-10 hover:shadow-2xl transition-all duration-500">
+                     <div className="rounded-2xl border border-gray-200 bg-white p-5 shadow-xl transition-all duration-500 hover:shadow-2xl sm:p-8 md:rounded-[32px] md:p-10">
                         <AnimatePresence mode="wait">
                            {isSuccess ? (
                               <motion.div
@@ -117,12 +119,12 @@ export default function ContactPage() {
                                        Tell us about your project
                                     </h3>
                                     <p className="text-gray-500">
-                                       Fill in the details and we'll get back to
-                                       you shortly.
+                                       Fill in the details and we&apos;ll get back
+                                       to you shortly.
                                     </p>
                                  </div>
 
-                                 <div className="grid md:grid-cols-2 gap-5">
+                                 <div className="grid gap-5 md:grid-cols-2">
                                     <div>
                                        <input
                                           {...register("fullName")}
@@ -159,7 +161,7 @@ export default function ContactPage() {
                                     className="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-blue-500 outline-none transition"
                                  />
 
-                                 <div className="grid md:grid-cols-2 gap-5">
+                                 <div className="grid gap-5 md:grid-cols-2">
                                     <select
                                        {...register("service")}
                                        className="w-full px-5 py-4 rounded-2xl border border-gray-300 bg-gray-50 focus:bg-white focus:border-blue-500 outline-none transition"
@@ -251,7 +253,7 @@ export default function ContactPage() {
                         ].map((item, idx) => (
                            <div
                               key={idx}
-                              className="bg-white border border-gray-200 rounded-[28px] p-6 shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                              className="rounded-2xl border border-gray-200 bg-white p-5 shadow-md transition-all duration-300 hover:-translate-y-1 hover:shadow-xl sm:p-6 md:rounded-[28px]"
                            >
                               <div className="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center mb-4">
                                  {item.icon}

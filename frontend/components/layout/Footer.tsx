@@ -1,25 +1,5 @@
 import Link from "next/link";
 
-const cities = [
-   "Agoura Hills",
-   "Anaheim",
-   "Beverly Hills",
-   "Burbank",
-   "Calabasas",
-   "Encino",
-   "Glendale",
-   "Lancaster",
-   "Long Beach",
-   "Los Angeles",
-   "Orange County",
-   "Pasadena",
-   "Santa Clarita",
-   "Santa Monica",
-   "Sherman Oaks",
-   "Torrance",
-   "Woodland Hills",
-];
-
 const columns = [
    {
       title: "Quick Links",
@@ -38,16 +18,7 @@ const columns = [
          ["Consulting", "/services"],
       ],
    },
-   {
-      title: "Industries",
-      links: [
-         ["Home Services", "/work"],
-         ["Legal", "/work"],
-         ["Ecommerce", "/work"],
-         ["Dental", "/work"],
-         ["Addiction Treatment", "/work"],
-      ],
-   },
+   
    {
       title: "Policies",
       links: [
@@ -62,16 +33,16 @@ const columns = [
 export default function Footer() {
    return (
       <footer className="bg-black text-white">
-         <div className="container-brand py-16">
-            <div className="grid gap-10 md:grid-cols-[1.2fr_repeat(4,1fr)]">
-               <div>
+         <div className="container-brand py-10 sm:py-16">
+            <div className="grid grid-cols-2 gap-8 sm:gap-10 md:grid-cols-[1.2fr_repeat(4,1fr)]">
+               <div className="col-span-2 md:col-span-1">
                   <Link
                      href="/"
-                     className="mb-5 block text-[28px] font-black tracking-[-0.08em]"
+                     className="mb-4 block text-[21px] font-black tracking-[-0.04em] sm:text-[26px] sm:tracking-[-0.08em]"
                   >
                      moon<span className="text-[#4ea3ff]">Creation</span>
                   </Link>
-                  <p className="max-w-[220px] text-base font-medium leading-relaxed text-white/85">
+                  <p className="max-w-[220px] text-sm font-medium leading-relaxed text-white/85 sm:text-base">
                      Expert digital marketing solutions for your business
                      growth.
                   </p>
@@ -79,7 +50,7 @@ export default function Footer() {
 
                {columns.map((column) => (
                   <div key={column.title}>
-                     <h3 className="mb-4 text-base font-extrabold">
+                     <h3 className="mb-4 text-sm font-extrabold uppercase tracking-wider text-white/50">
                         {column.title}
                      </h3>
                      <ul className="space-y-3">
@@ -98,8 +69,8 @@ export default function Footer() {
                ))}
             </div>
 
-            {/* <div className="mt-14 border-t border-white/15 pt-10 text-center">
-               <h3 className="mb-6 text-base font-extrabold">
+            <div className="mt-14 border-t border-white/15 pt-10 text-center">
+               {/* <h3 className="mb-6 text-base font-extrabold">
                   Cities We Serve
                </h3>
                <div className="mx-auto flex max-w-5xl flex-wrap justify-center gap-x-7 gap-y-4">
@@ -111,11 +82,11 @@ export default function Footer() {
                         {city}
                      </span>
                   ))}
-               </div>
-               <p className="mt-10 text-sm font-medium text-slate-400">
-                  &copy; 2026 Brand House. All rights reserved.
+               </div> */}
+               <p className=" text-sm font-medium text-slate-400">
+                  &copy; 2026 Moon Creation Films. All rights reserved.
                </p>
-            </div> */}
+            </div>
          </div>
       </footer>
    );

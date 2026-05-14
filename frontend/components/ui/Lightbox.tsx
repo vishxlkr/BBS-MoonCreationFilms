@@ -46,7 +46,7 @@ export default function Lightbox({
 
    const content = (
       <AnimatePresence>
-         <div className="fixed inset-0 z-[200] flex items-center justify-center p-4 sm:p-8">
+         <div className="fixed inset-0 z-[200] flex items-center justify-center p-3 sm:p-8">
             <motion.div
                initial={{ opacity: 0 }}
                animate={{ opacity: 1 }}
@@ -58,7 +58,7 @@ export default function Lightbox({
 
             <button
                onClick={onClose}
-               className="absolute top-6 right-6 z-[210] text-ice-blue hover:text-cinematic-blue transition-colors p-2 bg-deep-navy/20 rounded-full"
+               className="absolute right-3 top-3 z-[210] rounded-full bg-deep-navy/20 p-2 text-ice-blue transition-colors hover:text-cinematic-blue sm:right-6 sm:top-6"
             >
                <X size={28} />
             </button>
@@ -92,10 +92,10 @@ export default function Lightbox({
                animate={{ scale: 1, opacity: 1 }}
                exit={{ scale: 0.92, opacity: 0 }}
                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-               className="relative z-[205] w-full max-w-5xl flex flex-col gap-6"
+               className="relative z-[205] flex max-h-[90dvh] w-full max-w-5xl flex-col gap-4 overflow-y-auto sm:gap-6"
                onClick={(e) => e.stopPropagation()}
             >
-               <div className="aspect-video bg-black rounded-lg overflow-hidden border border-cinematic-blue/20 relative shadow-2xl">
+               <div className="relative aspect-video max-h-[68dvh] overflow-hidden rounded-lg border border-cinematic-blue/20 bg-black shadow-2xl">
                   {videoUrl ? (
                      videoUrl.includes("youtube") ||
                      videoUrl.includes("vimeo") ? (
@@ -123,7 +123,7 @@ export default function Lightbox({
                {(title || description) && (
                   <div className="text-center">
                      {title && (
-                        <h2 className="font-heading text-2xl md:text-3xl text-ice-blue mb-2">
+                        <h2 className="mb-2 font-heading text-xl leading-tight text-ice-blue md:text-3xl">
                            {title}
                         </h2>
                      )}

@@ -6,12 +6,12 @@ import gsap from "gsap";
 export default function CustomCursor() {
    const outerCursor = useRef<HTMLDivElement>(null);
    const textRef = useRef<HTMLDivElement>(null);
-   const [isVisible, setIsVisible] = useState(false);
+   const [isVisible] = useState(
+      () => typeof window !== "undefined" && window.innerWidth > 1024,
+   );
 
    useEffect(() => {
-      if (window.innerWidth <= 1024) return;
-
-      setIsVisible(true);
+      if (!isVisible) return;
 
       const onMouseMove = (e: MouseEvent) => {
          if (outerCursor.current) {
@@ -84,7 +84,7 @@ export default function CustomCursor() {
          window.removeEventListener("mouseover", onMouseOver);
          document.removeEventListener("mouseleave", resetCursor);
       };
-   }, []);
+   }, [isVisible]);
 
    if (!isVisible) return null;
 

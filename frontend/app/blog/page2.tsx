@@ -102,7 +102,7 @@ export default function BlogListingPage() {
                   Have a Project in <span className="text-gradient">Mind?</span>
                </h2>
                <p className="mx-auto mt-5 max-w-xl text-sm font-semibold text-white/70">
-                  Let's bring your vision to life. Contact us today to discuss
+                  Let&apos;s bring your vision to life. Contact us today to discuss
                   your next project.
                </p>
                <Link href="/contact" className="btn-primary mt-8">

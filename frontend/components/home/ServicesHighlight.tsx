@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import * as Icons from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import ServiceModal from "@/components/ui/ServiceModal";
 import { servicesData } from "@/lib/services-data";
 
@@ -43,7 +44,10 @@ export default function ServicesHighlight() {
             {/* Services Grid */}
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
                {featuredServices.map((service, index) => {
-                  const Icon = (Icons as any)[service.icon] || Icons.Video;
+                  const Icon =
+                     (Icons[service.icon as keyof typeof Icons] as
+                        | LucideIcon
+                        | undefined) || Icons.Video;
 
                   return (
                      <motion.div
